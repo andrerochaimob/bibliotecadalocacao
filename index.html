@@ -186,17 +186,6 @@ strong{ color:var(--ink); font-weight:700; }
   .hero-foto{ order:-1; }
 }
 
-/* ---------- scroll cue ---------- */
-.scroll-cue{ display:flex; justify-content:center; margin-top:44px; position:relative; z-index:2; }
-.scroll-cue span{
-  width:26px; height:42px; border:2px solid rgba(255,255,255,.4); border-radius:14px; position:relative;
-}
-.scroll-cue span::before{
-  content:''; position:absolute; top:7px; left:50%; width:4px; height:8px; background:var(--dourado);
-  border-radius:2px; transform:translateX(-50%); animation:roda 1.8s ease-in-out infinite;
-}
-@keyframes roda{ 0%{ opacity:1; top:7px; } 70%{ opacity:0; top:20px; } 100%{ opacity:0; top:7px; } }
-
 /* ================= URGÊNCIA ================= */
 .urgencia{
   background:linear-gradient(135deg,var(--laranja),var(--laranja-2));
@@ -547,7 +536,6 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
       <div class="selo">Advogado Imobiliário</div>
     </div>
   </div>
-  <div class="scroll-cue"><span></span></div>
 </section>
 
 <!-- ================= URGÊNCIA / CONTADOR ================= -->
@@ -628,7 +616,7 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
       <div class="texto">
         <h3>Escrito e revisado por um advogado imobiliário</h3>
         <div class="cargo">Advogado Imobiliário</div>
-        <p>Especializado em direito imobiliário, com atuação voltada aos impactos da Reforma Tributária sobre a locação de imóveis, o autor acompanha de perto a tramitação da reforma, da LC 214/2025 ao cronograma de implementação divulgado pelo governo. Este guia nasceu da mesma pergunta que aparece todos os dias no escritório: <em>"isso vai mexer no meu aluguel?"</em></p>
+        <p>Especialista em direito imobiliário e em direito tributário, com atuação voltada aos impactos da Reforma Tributária sobre a locação de imóveis, o autor acompanha de perto a tramitação da reforma, da LC 214/2025 ao cronograma de implementação divulgado pelo governo. Este guia nasceu da mesma pergunta que aparece todos os dias no escritório: <em>"isso vai mexer no meu aluguel?"</em></p>
         <div class="autor-badges">
           <span>Direito Imobiliário</span>
           <span>Reforma Tributária na Locação</span>
