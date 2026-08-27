@@ -484,6 +484,58 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 .prova-social .tempo{ display:block; font-size:11px; color:var(--ink-3); margin-top:2px; }
 @media (max-width:780px){ .prova-social{ left:14px; bottom:96px; max-width:72vw; } }
 
+/* ================= MODAL MAPA GRÁTIS ================= */
+.modal-overlay{
+  position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center;
+  padding:20px; background:rgba(18,22,28,.62); backdrop-filter:blur(3px);
+  opacity:0; visibility:hidden; transition:opacity .25s ease, visibility 0s linear .25s;
+}
+.modal-overlay.aberto{ opacity:1; visibility:visible; transition:opacity .25s ease; }
+.modal-caixa{
+  position:relative; width:min(440px,100%); background:var(--branco); border-radius:20px;
+  box-shadow:var(--sombra-lg); padding:34px 30px; transform:translateY(18px) scale(.98);
+  transition:transform .3s ease; max-height:88vh; overflow-y:auto;
+}
+.modal-overlay.aberto .modal-caixa{ transform:translateY(0) scale(1); }
+.modal-fechar{
+  position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; border:none;
+  background:var(--bg-2); color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.modal-fechar:hover{ background:var(--line); }
+.modal-icone{
+  width:46px; height:46px; border-radius:12px; background:var(--verde-bg); color:var(--verde);
+  display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:22px;
+}
+.modal-caixa h3{ font-size:21px; margin-bottom:10px; }
+.modal-texto{ font-size:14.5px; line-height:1.6; color:var(--ink-2); margin:0 0 22px; }
+.modal-texto strong{ color:var(--ink); }
+.campo{ margin-bottom:14px; }
+.campo label{ display:block; font-size:12.5px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
+.campo input[type=text],.campo input[type=email]{
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:var(--bg);
+  font-family:inherit; font-size:15px; color:var(--ink);
+}
+.campo input:focus{ outline:none; border-color:var(--verde-2); box-shadow:0 0 0 3px rgba(47,168,74,.15); }
+.campo-consentimento{ display:flex; align-items:flex-start; gap:10px; margin:18px 0 20px; }
+.campo-consentimento input{ margin-top:3px; flex:none; }
+.campo-consentimento label{ font-size:12.5px; line-height:1.5; color:var(--ink-3); }
+.modal-honeypot{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
+.modal-erro{
+  display:none; background:#FDECEC; border:1px solid #F3C6C6; color:#B3261E; font-size:13px;
+  padding:10px 12px; border-radius:10px; margin-bottom:14px;
+}
+.modal-erro.mostrar{ display:block; }
+.modal-sucesso{ display:none; text-align:center; padding:8px 0 4px; }
+.modal-sucesso.mostrar{ display:block; }
+.modal-sucesso .icone-ok{
+  width:56px; height:56px; border-radius:50%; background:var(--verde-bg); color:var(--verde);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:26px;
+}
+.modal-sucesso h3{ margin-bottom:8px; }
+.modal-sucesso p{ font-size:14.5px; color:var(--ink-2); }
+.modal-form.enviando{ opacity:.55; pointer-events:none; }
+body.modal-travado{ overflow:hidden; }
+
 @media (max-width:780px){
   .secao{ padding:60px 0; }
   .autor-card, .garantia-box{ padding:28px 22px; }
@@ -508,6 +560,8 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
   <symbol id="icon-message" viewBox="0 0 24 24"><path d="M4.5 5.5h15a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4.2 3.4a.6.6 0 0 1-1-.46V16.5h-.3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/></symbol>
   <symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2" fill="currentColor" stroke="none"/></symbol>
   <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/></symbol>
 </svg>
 
 <!-- ================= HEADER ================= -->
@@ -674,12 +728,13 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
             <td data-rotulo="Quem">Guia da Reforma na Locação</td>
             <td data-rotulo="Formato">PDF visual, no seu tempo</td>
             <td data-rotulo="Público">Você, proprietário</td>
-            <td class="preco bom" data-rotulo="Preço"><s class="riscado">R$ 197</s>12x R$ 4,86</td>
+            <td class="preco bom" data-rotulo="Preço">R$ 47</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="comparativo-nota reveal">Você não precisa de 24 horas de aula. Precisa de menos de 1 hora de leitura direto ao ponto.</p>
+    <p class="comparativo-nota reveal">R$ 47 é menos de 8% do curso mais barato desta lista — e você lê hoje, no seu horário, quantas vezes quiser.</p>
   </div>
 </section>
 
@@ -702,9 +757,9 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
         <ul class="beneficios">
           <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> 1 página, direto ao ponto</li>
           <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> PDF para salvar no celular</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Sem cadastro, download imediato</li>
+          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Só nome e e-mail, download na hora</li>
         </ul>
-        <a href="pdf/Mapa_da_Locacao.pdf" download="Mapa-da-Reforma-Tributaria-na-Locacao.pdf" class="btn btn-verde btn-bloco"><svg class="icon"><use href="#icon-download"></use></svg>Baixar o mapa grátis</a>
+        <button type="button" id="abrirMapaGratis" class="btn btn-verde btn-bloco"><svg class="icon"><use href="#icon-download"></use></svg>Baixar o mapa grátis</button>
         <div class="selo-confianca"><span><svg class="icon"><use href="#icon-file"></use></svg>PDF · 1 página</span><span><svg class="icon"><use href="#icon-zap"></use></svg>Download instantâneo</span></div>
       </div>
 
@@ -722,9 +777,8 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
           <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Atualizado com o prazo de dezembro/2026</li>
         </ul>
         <div class="preco-bloco">
-          <div class="preco-de">De <s>R$ 197</s> por</div>
-          <div class="destaque-preco">12x R$ 4,86<small>no cartão</small></div>
-          <div class="sub-preco">Equivalente a aproximadamente R$ 58,32 · valor final e formas de pagamento no checkout seguro da Hotmart.</div>
+          <div class="destaque-preco">R$ 47<small>à vista, ou 12x de R$ 4,86 no cartão</small></div>
+          <div class="sub-preco">Pagamento único. Sem assinatura, sem renovação. Formas de pagamento no checkout seguro da Hotmart.</div>
         </div>
 
         <script type="text/javascript">
@@ -866,11 +920,54 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 <a class="whats-flutuante" href="https://wa.me/5585921700545?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20do%20Guia%20da%20Reforma%20na%20Loca%C3%A7%C3%A3o%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg class="icon"><use href="#icon-message"></use></svg></a>
 
 <div class="barra-mobile" id="barraMobile">
-  <div class="info"><span class="de">De <s>R$ 197</s></span><b>12x R$ 4,86</b><span>Guia completo · Hotmart</span></div>
+  <div class="info"><b>R$ 47</b><span>ou 12x R$ 4,86 · Hotmart</span></div>
   <a href="#precos" class="btn btn-primario">Ver oferta</a>
 </div>
 
 <div class="prova-social" id="provaSocial"></div>
+
+<!-- ================= MODAL MAPA GRÁTIS ================= -->
+<div class="modal-overlay" id="modalMapa" aria-hidden="true">
+  <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modalMapaTitulo">
+    <button type="button" class="modal-fechar" id="modalMapaFechar" aria-label="Fechar"><svg class="icon"><use href="#icon-x"></use></svg></button>
+
+    <div class="modal-corpo" id="modalMapaCorpo">
+      <div class="modal-icone"><svg class="icon"><use href="#icon-mail"></use></svg></div>
+      <h3 id="modalMapaTitulo">Para onde enviamos o seu mapa?</h3>
+      <p class="modal-texto">O PDF chega no seu e-mail em menos de um minuto. É por ele também que eu aviso quando o cronograma da reforma mudar de novo — e ele já mudou duas vezes este ano.</p>
+
+      <div class="modal-erro" id="modalMapaErro"></div>
+
+      <form id="modalMapaForm" class="modal-form" novalidate>
+        <div class="modal-honeypot" aria-hidden="true">
+          <label for="mapaWebsite">Não preencha este campo</label>
+          <input type="text" id="mapaWebsite" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="mapaNome">Seu nome</label>
+          <input type="text" id="mapaNome" name="nome" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="campo">
+          <label for="mapaEmail">Seu melhor e-mail</label>
+          <input type="email" id="mapaEmail" name="email" autocomplete="email" required maxlength="190">
+        </div>
+        <div class="campo-consentimento">
+          <input type="checkbox" id="mapaConsentimento" name="consentimento" required>
+          <label for="mapaConsentimento">Autorizo o envio do material e de comunicações sobre a Reforma Tributária na locação, conforme a <a href="politica-de-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</label>
+        </div>
+        <button type="submit" class="btn btn-verde btn-bloco" id="modalMapaEnviar">Enviar o mapa para mim</button>
+      </form>
+    </div>
+
+    <div class="modal-sucesso" id="modalMapaSucesso">
+      <div class="icone-ok"><svg class="icon"><use href="#icon-check"></use></svg></div>
+      <h3>Prontinho!</h3>
+      <p>Seu download começou agora e o PDF também já está a caminho do seu e-mail.</p>
+    </div>
+  </div>
+</div>
+
+<a href="pdf/Mapa_da_Locacao.pdf" download="Mapa-da-Reforma-Tributaria-na-Locacao.pdf" id="linkDownloadMapa" style="display:none" aria-hidden="true"></a>
 
 <script>
 (function(){
@@ -974,6 +1071,99 @@ var provaSocialDados = [
 
   setTimeout(mostrarProximo, 4000);
   setInterval(mostrarProximo, 15000);
+})();
+</script>
+
+<script>
+// Modal do Mapa da Locação grátis: coleta nome + e-mail antes do download,
+// grava o lead (via /api/subscribe.php) e dispara o download normalmente.
+(function(){
+  var overlay = document.getElementById('modalMapa');
+  var btnAbrir = document.getElementById('abrirMapaGratis');
+  var btnFechar = document.getElementById('modalMapaFechar');
+  var form = document.getElementById('modalMapaForm');
+  var corpo = document.getElementById('modalMapaCorpo');
+  var sucesso = document.getElementById('modalMapaSucesso');
+  var erroBox = document.getElementById('modalMapaErro');
+  var btnEnviar = document.getElementById('modalMapaEnviar');
+  var linkDownload = document.getElementById('linkDownloadMapa');
+  if(!overlay || !btnAbrir || !form) return;
+
+  function limparErro(){ erroBox.textContent = ''; erroBox.classList.remove('mostrar'); }
+  function mostrarErro(msg){ erroBox.textContent = msg; erroBox.classList.add('mostrar'); }
+
+  function abrirModal(){
+    overlay.classList.add('aberto');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-travado');
+    setTimeout(function(){ document.getElementById('mapaNome').focus(); }, 300);
+  }
+
+  function fecharModal(){
+    overlay.classList.remove('aberto');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-travado');
+    setTimeout(function(){
+      corpo.style.display = '';
+      sucesso.classList.remove('mostrar');
+      form.reset();
+      limparErro();
+    }, 300);
+  }
+
+  btnAbrir.addEventListener('click', abrirModal);
+  btnFechar.addEventListener('click', fecharModal);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) fecharModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('aberto')) fecharModal();
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    limparErro();
+
+    var nome = document.getElementById('mapaNome').value.trim();
+    var email = document.getElementById('mapaEmail').value.trim();
+    var consentimento = document.getElementById('mapaConsentimento').checked;
+    var website = document.getElementById('mapaWebsite').value;
+
+    if(nome.length < 2){ mostrarErro('Digite seu nome completo.'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ mostrarErro('Digite um e-mail válido.'); return; }
+    if(!consentimento){ mostrarErro('Marque a autorização para receber o material.'); return; }
+
+    form.classList.add('enviando');
+    btnEnviar.textContent = 'Enviando...';
+
+    fetch('/api/token.php')
+      .then(function(r){ return r.json(); })
+      .then(function(token){
+        return fetch('/api/subscribe.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome: nome, email: email, consentimento: consentimento, website: website,
+            ts: token.ts, sig: token.sig
+          })
+        });
+      })
+      .then(function(r){ return r.json().then(function(dados){ return { status: r.status, dados: dados }; }); })
+      .then(function(res){
+        if(res.status !== 200 || !res.dados || res.dados.ok !== true){
+          throw new Error((res.dados && res.dados.erro) || 'falha');
+        }
+        linkDownload.click();
+        corpo.style.display = 'none';
+        sucesso.classList.add('mostrar');
+        setTimeout(fecharModal, 3200);
+      })
+      .catch(function(){
+        mostrarErro('Não conseguimos enviar agora. Tente de novo em instantes, ou escreva no WhatsApp.');
+      })
+      .finally(function(){
+        form.classList.remove('enviando');
+        btnEnviar.textContent = 'Enviar o mapa para mim';
+      });
+  });
 })();
 </script>
 

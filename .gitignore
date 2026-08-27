@@ -6,3 +6,7 @@ pdf/01 - Guia visual (30 pag).pdf
 
 # Arquivos do macOS
 .DS_Store
+
+# Segredos (Supabase service_role, Resend API key etc.) — nunca commitar.
+# Suba o .env real manualmente pelo Gerenciador de Arquivos do hPanel.
+.env

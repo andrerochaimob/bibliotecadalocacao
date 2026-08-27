@@ -1,0 +1,25 @@
+# Bloqueia acesso via navegador a arquivos de configuração/segredos.
+# Sem isso, alguém que soubesse a URL exata poderia baixar o .env com as
+# chaves do Supabase e do Resend em texto puro.
+<FilesMatch "(^|/)\.(env|env\..*|git.*|htaccess)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Nunca listar o conteúdo de pastas sem index.
+Options -Indexes
+
+# Bloqueia qualquer caminho que passe por dentro de uma pasta .git — o
+# FilesMatch acima só olha o nome do arquivo, não pega algo como
+# /.git/config. Isso importa se o deploy da Hostinger copiar o .git
+# inteiro para dentro do public_html.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule "(^|/)\.git" - [F,L]
+</IfModule>
+
