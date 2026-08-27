@@ -62,7 +62,7 @@ function bdl_email_html(string $nomeCompleto): string {
             <td class="bdl-pad" style="padding:36px 40px 8px;">
               <h1 class="bdl-hero-title" style="margin:0 0 18px; font-family:Georgia,'Times New Roman',serif; font-size:26px; line-height:1.25; color:#12202E;">Oi, {$saudacao}. Seu Mapa da Locação chegou.</h1>
               <p style="margin:0 0 16px; font-family:Arial,Helvetica,sans-serif; font-size:15.5px; line-height:1.65; color:#45525F;">
-                Está em anexo neste e-mail: 1 página direto ao ponto, com os dois critérios que definem se o seu aluguel entra na cobrança do novo IBS/CBS e a linha do tempo da reforma até 2033.
+                Está em anexo neste e-mail: 2 páginas, frente e verso. Na frente, os dois critérios que definem se o seu aluguel entra na cobrança do novo IBS/CBS. No verso, a linha do tempo da reforma até 2033.
               </p>
               <p style="margin:0 0 16px; font-family:Arial,Helvetica,sans-serif; font-size:15.5px; line-height:1.65; color:#45525F;">
                 Guarde este e-mail: é por ele que eu aviso quando o cronograma da reforma mudar de novo — e ele <strong style="color:#12202E;">já mudou duas vezes só em 2026</strong>. Prefiro te avisar a deixar você descobrir tarde demais.
@@ -127,7 +127,7 @@ function bdl_email_texto(string $nomeCompleto): string {
   $saudacao = $primeiroNome !== '' ? $primeiroNome : 'tudo bem';
 
   return "Oi, {$saudacao}. Seu Mapa da Locação chegou (em anexo, neste e-mail).\n\n"
-    . "1 página direto ao ponto, com os dois critérios que definem se o seu aluguel entra na cobrança do novo IBS/CBS e a linha do tempo da reforma até 2033.\n\n"
+    . "2 páginas, frente e verso: os dois critérios que definem se o seu aluguel entra na cobrança do novo IBS/CBS, e a linha do tempo da reforma até 2033.\n\n"
     . "Guarde este e-mail: é por ele que eu aviso quando o cronograma da reforma mudar de novo — e ele já mudou duas vezes só em 2026.\n\n"
     . "Quer o guia completo (30 páginas, R$ 47)? " . BDL_SITE_URL . "/#precos\n\n"
     . "Qualquer dúvida, é só responder este e-mail ou chamar no WhatsApp: https://wa.me/5585921700545\n\n"
