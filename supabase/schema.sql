@@ -5,6 +5,7 @@ create table if not exists public.leads_mapa (
   id uuid primary key default gen_random_uuid(),
   nome text not null,
   email text not null,
+  telefone text,
   consentimento boolean not null default false,
   origem text not null default 'mapa_gratuito',
   ip text,

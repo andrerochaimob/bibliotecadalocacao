@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Guia da Reforma Tributária na Locação: Entenda antes de dezembro de 2026</title>
-<meta name="description" content="Guia visual de 30 páginas, escrito e revisado por advogado imobiliário, para você entender como o IBS e a CBS afetam o seu aluguel antes do prazo de dezembro de 2026.">
-<link rel="icon" href="img/logo.png">
-<link rel="apple-touch-icon" href="img/logo.png">
+<meta name="description" content="Guia visual de 30 páginas para você entender como o IBS e a CBS afetam o seu aluguel antes do prazo de dezembro de 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C2410C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11.5 12 4l8 7.5'/%3E%3Cpath d='M6 10v9h5v-5h2v5h5v-9'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bibliotecadalocacao.com.br/">
 <meta property="og:title" content="Guia da Reforma Tributária na Locação">
@@ -85,7 +84,11 @@ strong{ color:var(--ink); font-weight:700; }
 .header.scrolled{ border-color:var(--line); box-shadow:0 8px 24px -18px rgba(11,29,48,.3); }
 .header .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:12px; padding-bottom:12px; }
 .header .marca{ display:flex; align-items:center; gap:10px; }
-.header .marca img{ height:34px; width:auto; filter:brightness(0) saturate(100%); }
+.header .marca .marca-icone{
+  flex:none; width:34px; height:34px; border-radius:9px; background:var(--laranja);
+  color:#fff; display:flex; align-items:center; justify-content:center;
+}
+.header .marca .marca-icone .icon{ width:19px; height:19px; }
 .header .marca-txt{ font-family:'Archivo',sans-serif; font-weight:800; font-size:15px; color:var(--ink); line-height:1.15; }
 .header .marca-txt span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
 .header nav{ display:flex; align-items:center; gap:26px; }
@@ -167,23 +170,38 @@ strong{ color:var(--ink); font-weight:700; }
 .confianca{ display:flex; flex-wrap:wrap; gap:16px 22px; font-size:13.5px; color:#AEBBCA; }
 .confianca span{ display:inline-flex; align-items:center; gap:6px; }
 
-.hero-foto{ position:relative; justify-self:center; }
-.hero-foto .moldura{
-  width:min(320px,80vw); border-radius:22px; overflow:hidden; border:5px solid rgba(255,255,255,.12);
-  box-shadow:var(--sombra-lg); position:relative; z-index:2;
+.hero-foto{ position:relative; justify-self:center; width:min(400px,92vw); }
+.hero-foto .anel{
+  position:absolute; inset:-14px; border:2px dashed rgba(227,174,75,.4); border-radius:30px; z-index:1;
+  animation:girar 40s linear infinite;
 }
-.hero-foto .moldura img{ display:block; width:100%; }
+@keyframes girar{ to{ transform:rotate(360deg); } }
+.painel-noticias{
+  position:relative; z-index:2; width:100%; background:#fff; border-radius:18px; overflow:hidden;
+  border:5px solid rgba(255,255,255,.12); box-shadow:var(--sombra-lg);
+}
+.painel-noticias .painel-topo{
+  display:flex; align-items:center; gap:8px; background:var(--laranja); color:#fff;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; padding:10px 14px;
+}
+.painel-noticias .ponto-vivo{ width:8px; height:8px; border-radius:50%; background:#fff; flex:none; animation:pulsar 1.6s ease-in-out infinite; }
+.painel-noticias .painel-tela{ position:relative; height:200px; background:#fff; }
+.painel-noticias .painel-tela img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:14px;
+  opacity:0; transition:opacity .6s ease;
+}
+.painel-noticias .painel-tela img.ativa{ opacity:1; }
+.painel-noticias .painel-dots{ display:flex; justify-content:center; gap:7px; padding:12px; background:var(--bg-2); }
+.painel-noticias .painel-dots .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .25s ease, transform .25s ease; }
+.painel-noticias .painel-dots .dot.ativo{ background:var(--laranja); transform:scale(1.25); }
 .hero-foto .selo{
   position:absolute; z-index:3; left:50%; bottom:-18px; transform:translateX(-50%);
   background:#fff; color:var(--navy); padding:10px 18px; border-radius:11px; box-shadow:var(--sombra);
   font-size:13px; font-weight:700; white-space:nowrap; text-align:center; line-height:1.3;
 }
 .hero-foto .selo span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
-.hero-foto .anel{
-  position:absolute; inset:-14px; border:2px dashed rgba(227,174,75,.4); border-radius:30px; z-index:1;
-  animation:girar 40s linear infinite;
-}
-@keyframes girar{ to{ transform:rotate(360deg); } }
+@media (max-width:420px){ .painel-noticias .painel-tela{ height:170px; } }
 
 @media (max-width:900px){
   .hero .wrap{ grid-template-columns:1fr; text-align:center; gap:40px; }
@@ -270,27 +288,6 @@ strong{ color:var(--ink); font-weight:700; }
 .pdf-mock .tag-flutuante.t2{ bottom:-16px; left:-14px; background:var(--laranja); animation:boiar 5s ease-in-out infinite; animation-delay:-2.5s; }
 @keyframes boiar{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
 @media (max-width:900px){ .conteudo-layout{ grid-template-columns:1fr; } .pdf-mock{ order:-1; max-width:340px; margin:0 auto; } }
-
-/* ---------- autor ---------- */
-.autor-card{
-  display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:center;
-  background:var(--navy); border-radius:22px; padding:44px; color:#fff; position:relative; overflow:hidden;
-}
-.autor-card::before{
-  content:''; position:absolute; width:300px; height:300px; border-radius:50%; background:var(--laranja-2);
-  filter:blur(90px); opacity:.25; top:-100px; right:-60px;
-}
-.autor-card .foto{ border-radius:16px; overflow:hidden; border:4px solid rgba(255,255,255,.15); position:relative; z-index:2; }
-.autor-card .texto{ position:relative; z-index:2; }
-.autor-card h3{ color:#fff; font-size:24px; margin-bottom:4px; }
-.autor-card .cargo{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--dourado); margin-bottom:16px; }
-.autor-card p{ color:#C7D3E0; font-size:16px; max-width:60ch; }
-.autor-badges{ display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; }
-.autor-badges span{
-  font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.05em; color:#fff;
-  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); padding:6px 12px; border-radius:99px;
-}
-@media (max-width:720px){ .autor-card{ grid-template-columns:1fr; text-align:center; padding:34px 26px; } .autor-card .foto{ max-width:180px; margin:0 auto; } .autor-badges{ justify-content:center; } }
 
 /* ---------- comparativo ---------- */
 .tabela-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:16px; background:var(--branco); box-shadow:var(--sombra); }
@@ -432,7 +429,11 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 .rodape{ background:var(--navy); color:#93A2B4; padding:48px 0 32px; }
 .rodape .topo-rodape{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:28px; margin-bottom:24px; }
 .rodape .marca-rodape{ display:flex; align-items:center; gap:12px; }
-.rodape .marca-rodape img{ height:38px; }
+.rodape .marca-rodape .marca-icone{
+  flex:none; width:38px; height:38px; border-radius:10px; background:var(--laranja);
+  color:#fff; display:flex; align-items:center; justify-content:center;
+}
+.rodape .marca-rodape .marca-icone .icon{ width:21px; height:21px; }
 .rodape .marca-rodape span{ font-family:'Archivo',sans-serif; font-weight:800; color:#fff; font-size:16px; }
 .rodape .contato{ display:flex; gap:20px; flex-wrap:wrap; font-size:14.5px; }
 .rodape .contato a{ color:#C7D3E0; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
@@ -511,7 +512,7 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 .modal-texto strong{ color:var(--ink); }
 .campo{ margin-bottom:14px; }
 .campo label{ display:block; font-size:12.5px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
-.campo input[type=text],.campo input[type=email]{
+.campo input[type=text],.campo input[type=email],.campo input[type=tel]{
   width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:var(--bg);
   font-family:inherit; font-size:15px; color:var(--ink);
 }
@@ -568,7 +569,7 @@ body.modal-travado{ overflow:hidden; }
 <header class="header" id="header">
   <div class="wrap">
     <div class="marca">
-      <img src="img/logo.png" alt="Logo do escritório">
+      <span class="marca-icone"><svg class="icon"><use href="#icon-home"></use></svg></span>
       <div class="marca-txt">Biblioteca da Locação<span>Reforma tributária · imóveis</span></div>
     </div>
     <nav>
@@ -586,7 +587,7 @@ body.modal-travado{ overflow:hidden; }
     <div class="hero-texto">
       <span class="eyebrow"><span class="ponto"></span>Reforma tributária · locação de imóveis</span>
       <h1>Alugar imóvel vai mudar de regra. <em>Entenda antes de dezembro de 2026.</em></h1>
-      <p class="sub">Um guia visual de 30 páginas, escrito e revisado por advogado imobiliário, para você descobrir, sem juridiquês, se e como o novo IBS/CBS vai pesar no seu aluguel.</p>
+      <p class="sub">Um guia visual de 30 páginas para você descobrir, sem juridiquês, se e como o novo IBS/CBS vai pesar no seu aluguel.</p>
       <div class="ctas">
         <a href="#precos" class="btn btn-primario">Quero o guia completo →</a>
         <a href="#gratis" class="btn btn-fantasma">Baixar o mapa grátis</a>
@@ -599,8 +600,20 @@ body.modal-travado{ overflow:hidden; }
     </div>
     <div class="hero-foto">
       <div class="anel"></div>
-      <div class="moldura"><img src="img/advogado.png" alt="Advogado imobiliário responsável pelo conteúdo"></div>
-      <div class="selo">Advogado Imobiliário</div>
+      <div class="painel-noticias" id="painelNoticias">
+        <div class="painel-topo"><span class="ponto-vivo"></span>Repercutindo agora na imprensa</div>
+        <div class="painel-tela">
+          <img class="ativa" src="img/noticia1.jpeg" alt="Manchete: Reforma Tributária acende alerta para quem vive de aluguel e pode exigir revisão do patrimônio">
+          <img src="img/noticia2.jpeg" alt="Manchete: Imposto sobre aluguel na Reforma Tributária — o que muda, quem paga e como pagar menos de forma legal">
+          <img src="img/noticia3.jpeg" alt="Manchete: Reforma Tributária pode dobrar imposto sobre aluguel? Entenda as mudanças">
+          <img src="img/noticia4.jpeg" alt="Manchete: Taxação de aluguéis deve dobrar, diz entidade">
+          <img src="img/noticia5.jpeg" alt="Manchete: Aluguel — veja quem terá de pagar CBS e IBS na reforma tributária">
+        </div>
+        <div class="painel-dots">
+          <span class="dot ativo"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      </div>
+      <div class="selo">Assunto do momento<span>Já é notícia em todo o país</span></div>
     </div>
   </div>
 </section>
@@ -675,25 +688,6 @@ body.modal-travado{ overflow:hidden; }
   </div>
 </section>
 
-<!-- ================= AUTOR ================= -->
-<section class="secao" id="autor">
-  <div class="wrap">
-    <div class="autor-card reveal">
-      <div class="foto"><img src="img/advogado.png" alt="Advogado imobiliário responsável pelo conteúdo"></div>
-      <div class="texto">
-        <h3>Escrito e revisado por um advogado imobiliário</h3>
-        <div class="cargo">Advogado Imobiliário</div>
-        <p>Advogado com atuação em direito imobiliário e tributário, voltada aos impactos da Reforma Tributária sobre a locação de imóveis. Acompanha a regulamentação desde a LC 214/2025 até o cronograma de implementação divulgado pelo governo, e este guia nasceu da mesma pergunta que aparece todos os dias no escritório: <em>"isso vai mexer no meu aluguel?"</em></p>
-        <div class="autor-badges">
-          <span>Direito Imobiliário</span>
-          <span>Reforma Tributária na Locação</span>
-          <span>Conteúdo com fontes citadas</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= COMPARATIVO ================= -->
 <section class="secao faixa" id="comparativo">
   <div class="wrap">
@@ -757,7 +751,7 @@ body.modal-travado{ overflow:hidden; }
         <ul class="beneficios">
           <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> 2 páginas, frente e verso</li>
           <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> PDF para salvar no celular</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Só nome e e-mail, download na hora</li>
+          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Só nome, e-mail e WhatsApp, download na hora</li>
         </ul>
         <button type="button" id="abrirMapaGratis" class="btn btn-verde btn-bloco"><svg class="icon"><use href="#icon-download"></use></svg>Baixar o mapa grátis</button>
         <div class="selo-confianca"><span><svg class="icon"><use href="#icon-file"></use></svg>PDF · 2 páginas</span><span><svg class="icon"><use href="#icon-zap"></use></svg>Download instantâneo</span></div>
@@ -903,7 +897,7 @@ body.modal-travado{ overflow:hidden; }
 <footer class="rodape">
   <div class="wrap">
     <div class="topo-rodape">
-      <div class="marca-rodape"><img src="img/logo.png" alt="Logo"><span>Biblioteca da Locação</span></div>
+      <div class="marca-rodape"><span class="marca-icone"><svg class="icon"><use href="#icon-home"></use></svg></span><span>Biblioteca da Locação</span></div>
       <div class="contato">
         <a href="https://wa.me/5585921700545" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-message"></use></svg>(85) 92170-0545</a>
         <a href="#precos">Ver preços</a>
@@ -950,6 +944,10 @@ body.modal-travado{ overflow:hidden; }
         <div class="campo">
           <label for="mapaEmail">Seu melhor e-mail</label>
           <input type="email" id="mapaEmail" name="email" autocomplete="email" required maxlength="190">
+        </div>
+        <div class="campo">
+          <label for="mapaTelefone">Seu WhatsApp (com DDD)</label>
+          <input type="tel" id="mapaTelefone" name="telefone" autocomplete="tel" required maxlength="20" placeholder="(85) 91234-5678">
         </div>
         <div class="campo-consentimento">
           <input type="checkbox" id="mapaConsentimento" name="consentimento" required>
@@ -1007,6 +1005,21 @@ body.modal-travado{ overflow:hidden; }
     });
   }, { threshold:.12 });
   alvos.forEach(function(el){ observador.observe(el); });
+
+  // Painel de notícias do hero: alterna as manchetes automaticamente
+  var painelNoticias = document.getElementById('painelNoticias');
+  if(painelNoticias){
+    var imagensNoticias = painelNoticias.querySelectorAll('.painel-tela img');
+    var dotsNoticias = painelNoticias.querySelectorAll('.painel-dots .dot');
+    var indiceNoticia = 0;
+    setInterval(function(){
+      imagensNoticias[indiceNoticia].classList.remove('ativa');
+      dotsNoticias[indiceNoticia].classList.remove('ativo');
+      indiceNoticia = (indiceNoticia + 1) % imagensNoticias.length;
+      imagensNoticias[indiceNoticia].classList.add('ativa');
+      dotsNoticias[indiceNoticia].classList.add('ativo');
+    }, 3800);
+  }
 
   // Acordeão do FAQ
   document.querySelectorAll('.faq-item').forEach(function(item){
@@ -1124,11 +1137,13 @@ var provaSocialDados = [
 
     var nome = document.getElementById('mapaNome').value.trim();
     var email = document.getElementById('mapaEmail').value.trim();
+    var telefone = document.getElementById('mapaTelefone').value.trim();
     var consentimento = document.getElementById('mapaConsentimento').checked;
     var website = document.getElementById('mapaWebsite').value;
 
     if(nome.length < 2){ mostrarErro('Digite seu nome completo.'); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ mostrarErro('Digite um e-mail válido.'); return; }
+    if(telefone.replace(/\D/g,'').length < 10){ mostrarErro('Digite um WhatsApp válido, com DDD.'); return; }
     if(!consentimento){ mostrarErro('Marque a autorização para receber o material.'); return; }
 
     form.classList.add('enviando');
@@ -1141,7 +1156,7 @@ var provaSocialDados = [
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            nome: nome, email: email, consentimento: consentimento, website: website,
+            nome: nome, email: email, telefone: telefone, consentimento: consentimento, website: website,
             ts: token.ts, sig: token.sig
           })
         });

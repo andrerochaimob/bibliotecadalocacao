@@ -15,8 +15,6 @@ function bdl_email_html(string $nomeCompleto): string {
   $primeiroNome = trim(explode(' ', trim($nomeCompleto))[0] ?? '');
   $saudacao = $primeiroNome !== '' ? htmlspecialchars($primeiroNome, ENT_QUOTES, 'UTF-8') : 'tudo bem';
 
-  $logoUrl = BDL_SITE_URL . '/img/logo.png';
-  $advogadoUrl = BDL_SITE_URL . '/img/advogado.png';
   $linkPrecos = BDL_SITE_URL . '/#precos';
   $linkWhats = 'https://wa.me/5585921700545?text=Ol%C3%A1!%20Recebi%20o%20Mapa%20da%20Loca%C3%A7%C3%A3o%20e%20tenho%20uma%20d%C3%BAvida.';
 
@@ -44,7 +42,7 @@ function bdl_email_html(string $nomeCompleto): string {
           <!-- Cabeçalho -->
           <tr>
             <td align="center" style="background:#12161C; padding:28px 24px;">
-              <img src="{$logoUrl}" width="30" height="40" alt="Biblioteca da Locação" style="display:block; margin:0 auto 10px;">
+              <div style="width:34px; height:34px; line-height:34px; border-radius:9px; background:#C2410C; margin:0 auto 10px; font-size:17px;">🏠</div>
               <div style="font-family:Georgia,'Times New Roman',serif; font-weight:700; font-size:16px; letter-spacing:.02em; color:#FFFFFF;">Biblioteca da Locação</div>
               <div style="font-family:'Courier New',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#E3AE4B; margin-top:4px;">Reforma Tributária na Locação</div>
             </td>
@@ -82,17 +80,13 @@ function bdl_email_html(string $nomeCompleto): string {
             </td>
           </tr>
 
-          <!-- Assinatura do advogado -->
+          <!-- Assinatura -->
           <tr>
             <td class="bdl-pad" style="padding:0 40px 32px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FBF9F4; border:1px solid #E4DECE; border-radius:14px;">
                 <tr>
-                  <td width="86" style="padding:20px 0 20px 20px;" valign="top">
-                    <img src="{$advogadoUrl}" width="64" height="64" alt="Advogado imobiliário responsável pelo conteúdo" style="display:block; border-radius:50%; object-fit:cover; width:64px; height:64px;">
-                  </td>
-                  <td style="padding:20px 20px 20px 16px;" valign="top">
-                    <div style="font-family:Arial,Helvetica,sans-serif; font-size:14.5px; font-weight:700; color:#12202E;">Escrito e revisado por advogado imobiliário</div>
-                    <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#C2410C; margin:3px 0 8px;">Biblioteca da Locação</div>
+                  <td style="padding:20px 22px;" valign="top">
+                    <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#C2410C; margin:0 0 8px;">Biblioteca da Locação</div>
                     <div style="font-family:Arial,Helvetica,sans-serif; font-size:13.5px; line-height:1.55; color:#45525F;">Qualquer dúvida sobre o mapa, é só responder este e-mail ou chamar no WhatsApp.</div>
                   </td>
                 </tr>

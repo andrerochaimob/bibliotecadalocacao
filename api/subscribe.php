@@ -48,15 +48,20 @@ if (BDL_APP_TOKEN_SECRET === '' || $ts <= 0 || $sig === ''
 
 $nome = trim((string) ($dados['nome'] ?? ''));
 $email = mb_strtolower(trim((string) ($dados['email'] ?? '')));
+$telefone = trim((string) ($dados['telefone'] ?? ''));
 $consentimento = (bool) ($dados['consentimento'] ?? false);
 
 $nome = preg_replace('/\s+/', ' ', strip_tags($nome)) ?? '';
+$telefone = preg_replace('/[^0-9+]/', '', $telefone) ?? '';
 
 if (mb_strlen($nome) < 2 || mb_strlen($nome) > 120) {
   bdl_responder(422, ['erro' => 'nome_invalido']);
 }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 190) {
   bdl_responder(422, ['erro' => 'email_invalido']);
+}
+if (mb_strlen($telefone) < 10 || mb_strlen($telefone) > 20) {
+  bdl_responder(422, ['erro' => 'telefone_invalido']);
 }
 if (!$consentimento) {
   bdl_responder(422, ['erro' => 'consentimento_obrigatorio']);
@@ -68,11 +73,12 @@ if (is_string($ip) && str_contains($ip, ',')) {
 }
 $userAgent = substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300);
 
-function bdl_supabase_upsert(string $nome, string $email, ?string $ip = null, ?string $userAgent = null): array {
+function bdl_supabase_upsert(string $nome, string $email, string $telefone, ?string $ip = null, ?string $userAgent = null): array {
   $url = BDL_SUPABASE_URL . '/rest/v1/leads_mapa?on_conflict=email';
   $corpo = json_encode([
     'nome' => $nome,
     'email' => $email,
+    'telefone' => $telefone,
     'consentimento' => true,
     'origem' => 'mapa_gratuito',
     'ip' => $ip,
@@ -158,7 +164,7 @@ function bdl_resend_enviar(string $paraNome, string $paraEmail): array {
   return ['ok' => $status >= 200 && $status < 300, 'status' => $status, 'resposta' => $resposta, 'erro_curl' => $erroCurl];
 }
 
-$upsert = bdl_supabase_upsert($nome, $email, $ip, $userAgent);
+$upsert = bdl_supabase_upsert($nome, $email, $telefone, $ip, $userAgent);
 if (!$upsert['ok']) {
   error_log('[bdl] Falha ao gravar lead no Supabase: ' . $upsert['status'] . ' ' . $upsert['resposta'] . ' ' . $upsert['erro_curl']);
   bdl_responder(502, ['erro' => 'falha_ao_salvar']);
