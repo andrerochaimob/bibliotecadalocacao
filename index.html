@@ -1133,6 +1133,29 @@ var provaSocialDados = [
     }, 300);
   }
 
+  // Normaliza o WhatsApp para o formato 55DDD9XXXXXXXX antes de mandar pro Supabase:
+  // confere se o DDD foi digitado, completa o 9º dígito quando faltar e confirma
+  // que sobraram os 8 dígitos do número (xxxx-xxxx).
+  function normalizarTelefoneBR(valor){
+    var d = String(valor || '').replace(/\D/g, '');
+    if(d.length === 12 || d.length === 13){
+      if(d.indexOf('55') === 0){ d = d.slice(2); }
+    }
+    if(d.length === 10){ d = d.slice(0, 2) + '9' + d.slice(2); }
+    if(d.length !== 11){
+      return { ok:false, erro:'Digite seu WhatsApp com DDD, no formato (85) 91234-5678.' };
+    }
+    var ddd = d.slice(0, 2);
+    var resto = d.slice(2);
+    if(!/^[1-9][1-9]$/.test(ddd)){
+      return { ok:false, erro:'Digite o DDD do seu WhatsApp (2 números antes do celular).' };
+    }
+    if(!/^9\d{8}$/.test(resto)){
+      return { ok:false, erro:'Confira o número do WhatsApp: faltam dígitos depois do DDD (xxxx-xxxx).' };
+    }
+    return { ok:true, valor:'55' + d };
+  }
+
   btnAbrir.addEventListener('click', abrirModal);
   btnFechar.addEventListener('click', fecharModal);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) fecharModal(); });
@@ -1146,13 +1169,13 @@ var provaSocialDados = [
 
     var nome = document.getElementById('mapaNome').value.trim();
     var email = document.getElementById('mapaEmail').value.trim();
-    var telefone = document.getElementById('mapaTelefone').value.trim();
+    var telefoneNorm = normalizarTelefoneBR(document.getElementById('mapaTelefone').value);
     var consentimento = document.getElementById('mapaConsentimento').checked;
     var website = document.getElementById('mapaWebsite').value;
 
     if(nome.length < 2){ mostrarErro('Digite seu nome completo.'); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ mostrarErro('Digite um e-mail válido.'); return; }
-    if(telefone.replace(/\D/g,'').length < 10){ mostrarErro('Digite um WhatsApp válido, com DDD.'); return; }
+    if(!telefoneNorm.ok){ mostrarErro(telefoneNorm.erro); return; }
     if(!consentimento){ mostrarErro('Marque a autorização para receber o material.'); return; }
 
     form.classList.add('enviando');
@@ -1165,7 +1188,7 @@ var provaSocialDados = [
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            nome: nome, email: email, telefone: telefone, consentimento: consentimento, website: website,
+            nome: nome, email: email, telefone: telefoneNorm.valor, consentimento: consentimento, website: website,
             ts: token.ts, sig: token.sig
           })
         });

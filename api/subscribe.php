@@ -19,6 +19,31 @@ function bdl_responder(int $status, array $corpo) {
   exit;
 }
 
+// Normaliza o WhatsApp para o formato 55DDD9XXXXXXXX antes de gravar no
+// Supabase: confere se o DDD foi digitado, completa o 9º dígito quando
+// faltar (aceita tanto o número com DDD só, quanto já com o código do
+// país 55 na frente) e confirma que sobraram os 8 dígitos do número.
+function bdl_normalizar_telefone(string $valor): ?string {
+  $d = preg_replace('/\D/', '', $valor) ?? '';
+  if (strlen($d) === 12 || strlen($d) === 13) {
+    if (str_starts_with($d, '55')) {
+      $d = substr($d, 2);
+    }
+  }
+  if (strlen($d) === 10) {
+    $d = substr($d, 0, 2) . '9' . substr($d, 2);
+  }
+  if (strlen($d) !== 11) {
+    return null;
+  }
+  $ddd = substr($d, 0, 2);
+  $resto = substr($d, 2);
+  if (!preg_match('/^[1-9][1-9]$/', $ddd) || !preg_match('/^9\d{8}$/', $resto)) {
+    return null;
+  }
+  return '55' . $d;
+}
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
   bdl_responder(405, ['erro' => 'method_not_allowed']);
 }
@@ -52,7 +77,7 @@ $telefone = trim((string) ($dados['telefone'] ?? ''));
 $consentimento = (bool) ($dados['consentimento'] ?? false);
 
 $nome = preg_replace('/\s+/', ' ', strip_tags($nome)) ?? '';
-$telefone = preg_replace('/[^0-9+]/', '', $telefone) ?? '';
+$telefone = bdl_normalizar_telefone($telefone);
 
 if (mb_strlen($nome) < 2 || mb_strlen($nome) > 120) {
   bdl_responder(422, ['erro' => 'nome_invalido']);
@@ -60,7 +85,7 @@ if (mb_strlen($nome) < 2 || mb_strlen($nome) > 120) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 190) {
   bdl_responder(422, ['erro' => 'email_invalido']);
 }
-if (mb_strlen($telefone) < 10 || mb_strlen($telefone) > 20) {
+if ($telefone === null) {
   bdl_responder(422, ['erro' => 'telefone_invalido']);
 }
 if (!$consentimento) {
