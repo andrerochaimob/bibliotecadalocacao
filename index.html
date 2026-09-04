@@ -335,27 +335,22 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 }
 
 /* ================= PREÇOS ================= */
-.precos-grid{ display:grid; grid-template-columns:1fr 1.15fr; gap:26px; align-items:stretch; }
+.precos-grid{ display:flex; justify-content:center; }
 .card-preco{
   background:var(--branco); border:1px solid var(--line); border-radius:22px; padding:36px 32px;
   display:flex; flex-direction:column; position:relative; transition:transform .25s ease, box-shadow .25s ease;
+  max-width:560px; width:100%;
 }
 .card-preco:hover{ transform:translateY(-6px); box-shadow:var(--sombra-lg); }
 .card-preco .chip{
   align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700;
   letter-spacing:.08em; text-transform:uppercase; padding:7px 13px; border-radius:99px; margin-bottom:18px;
 }
-.card-gratis .chip{ background:var(--verde-bg); color:var(--verde); }
 .card-pago{
   background:linear-gradient(180deg,var(--branco),var(--branco)); border:2px solid var(--laranja);
   box-shadow:0 26px 70px -30px rgba(194,65,12,.4);
 }
 .card-pago .chip{ background:#FBEDE4; color:var(--laranja); }
-.ribbon{
-  position:absolute; top:-14px; right:26px; background:linear-gradient(135deg,var(--laranja-2),var(--laranja));
-  color:#fff; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; padding:8px 16px; border-radius:8px; box-shadow:0 10px 20px -8px rgba(194,65,12,.6);
-}
 .card-preco h3{ font-size:23px; margin-bottom:10px; }
 .card-preco .desc{ font-size:15.5px; color:var(--ink-2); margin-bottom:22px; }
 .card-preco .beneficios{ list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:11px; flex:1; }
@@ -374,7 +369,6 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 .preco-bloco .sub-preco{ font-size:13px; color:var(--ink-3); margin-top:8px; }
 .selo-confianca{ display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:18px; font-size:12.5px; color:var(--ink-3); }
 .selo-confianca span{ display:inline-flex; align-items:center; gap:5px; }
-@media (max-width:900px){ .precos-grid{ grid-template-columns:1fr; } .card-pago{ order:-1; } }
 .selos-seguranca{
   display:flex; flex-wrap:wrap; justify-content:center; gap:12px 26px;
   margin-top:36px; padding-top:28px; border-top:1px solid var(--line);
@@ -494,58 +488,6 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 .prova-social .tempo{ display:block; font-size:11px; color:var(--ink-3); margin-top:2px; }
 @media (max-width:780px){ .prova-social{ left:14px; bottom:96px; max-width:72vw; } }
 
-/* ================= MODAL MAPA GRÁTIS ================= */
-.modal-overlay{
-  position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center;
-  padding:20px; background:rgba(18,22,28,.62); backdrop-filter:blur(3px);
-  opacity:0; visibility:hidden; transition:opacity .25s ease, visibility 0s linear .25s;
-}
-.modal-overlay.aberto{ opacity:1; visibility:visible; transition:opacity .25s ease; }
-.modal-caixa{
-  position:relative; width:min(440px,100%); background:var(--branco); border-radius:20px;
-  box-shadow:var(--sombra-lg); padding:34px 30px; transform:translateY(18px) scale(.98);
-  transition:transform .3s ease; max-height:88vh; overflow-y:auto;
-}
-.modal-overlay.aberto .modal-caixa{ transform:translateY(0) scale(1); }
-.modal-fechar{
-  position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; border:none;
-  background:var(--bg-2); color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer;
-}
-.modal-fechar:hover{ background:var(--line); }
-.modal-icone{
-  width:46px; height:46px; border-radius:12px; background:var(--verde-bg); color:var(--verde);
-  display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:22px;
-}
-.modal-caixa h3{ font-size:21px; margin-bottom:10px; }
-.modal-texto{ font-size:14.5px; line-height:1.6; color:var(--ink-2); margin:0 0 22px; }
-.modal-texto strong{ color:var(--ink); }
-.campo{ margin-bottom:14px; }
-.campo label{ display:block; font-size:12.5px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
-.campo input[type=text],.campo input[type=email],.campo input[type=tel]{
-  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:var(--bg);
-  font-family:inherit; font-size:15px; color:var(--ink);
-}
-.campo input:focus{ outline:none; border-color:var(--verde-2); box-shadow:0 0 0 3px rgba(47,168,74,.15); }
-.campo-consentimento{ display:flex; align-items:flex-start; gap:10px; margin:18px 0 20px; }
-.campo-consentimento input{ margin-top:3px; flex:none; }
-.campo-consentimento label{ font-size:12.5px; line-height:1.5; color:var(--ink-3); }
-.modal-honeypot{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
-.modal-erro{
-  display:none; background:#FDECEC; border:1px solid #F3C6C6; color:#B3261E; font-size:13px;
-  padding:10px 12px; border-radius:10px; margin-bottom:14px;
-}
-.modal-erro.mostrar{ display:block; }
-.modal-sucesso{ display:none; text-align:center; padding:8px 0 4px; }
-.modal-sucesso.mostrar{ display:block; }
-.modal-sucesso .icone-ok{
-  width:56px; height:56px; border-radius:50%; background:var(--verde-bg); color:var(--verde);
-  display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:26px;
-}
-.modal-sucesso h3{ margin-bottom:8px; }
-.modal-sucesso p{ font-size:14.5px; color:var(--ink-2); }
-.modal-form.enviando{ opacity:.55; pointer-events:none; }
-body.modal-travado{ overflow:hidden; }
-
 @media (max-width:780px){
   .secao{ padding:60px 0; }
   .autor-card, .garantia-box{ padding:28px 22px; }
@@ -599,7 +541,6 @@ body.modal-travado{ overflow:hidden; }
       <p class="sub">Um guia visual de 30 páginas para você descobrir, sem juridiquês, se e como o novo IBS/CBS vai pesar no seu aluguel.</p>
       <div class="ctas">
         <a href="#precos" class="btn btn-primario">Quero o guia completo →</a>
-        <a href="#gratis" class="btn btn-fantasma">Baixar o mapa grátis</a>
       </div>
       <div class="confianca">
         <span><svg class="icon"><use href="#icon-lock"></use></svg>Compra segura via Hotmart</span>
@@ -745,30 +686,14 @@ body.modal-travado{ overflow:hidden; }
 <section class="secao" id="precos">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
-      <span class="tag">Escolha o seu ponto de partida</span>
-      <h2>Dois jeitos de começar a entender agora</h2>
-      <p>Comece pelo mapa grátis ou vá direto para o guia completo. Os dois estão prontos para download.</p>
+      <span class="tag">Garanta o seu agora</span>
+      <h2>Tudo o que você precisa para entender a reforma</h2>
+      <p>O guia completo está pronto para download, com pagamento seguro pela Hotmart.</p>
     </div>
 
     <div class="precos-grid">
 
-      <!-- CARD GRÁTIS -->
-      <div class="card-preco card-gratis reveal" id="gratis">
-        <span class="chip">Comece por aqui · grátis</span>
-        <h3>Mapa da Locação</h3>
-        <p class="desc">Frente e verso. Na frente, os dois critérios que definem se a reforma alcança o seu aluguel, com o fluxo de quatro perguntas para você responder na hora. No verso, o que acontece em cada ano até 2033, com a alíquota de cada etapa.</p>
-        <ul class="beneficios">
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> 2 páginas, frente e verso</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> PDF para salvar no celular</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Só nome, e-mail e WhatsApp, download na hora</li>
-        </ul>
-        <button type="button" id="abrirMapaGratis" class="btn btn-verde btn-bloco"><svg class="icon"><use href="#icon-download"></use></svg>Baixar o mapa grátis</button>
-        <div class="selo-confianca"><span><svg class="icon"><use href="#icon-file"></use></svg>PDF · 2 páginas</span><span><svg class="icon"><use href="#icon-zap"></use></svg>Download instantâneo</span></div>
-      </div>
-
-      <!-- CARD PAGO -->
-      <div class="card-preco card-pago reveal d1" id="guia-completo">
-        <span class="ribbon">Mais completo</span>
+      <div class="card-preco card-pago reveal" id="guia-completo">
         <span class="chip">Guia completo</span>
         <h3>Guia Visual da Reforma na Locação</h3>
         <p class="desc">30 páginas que explicam a reforma do começo ao fim: fundamentos, enquadramento, linha do tempo completa e o checklist do que fazer antes de dezembro de 2026.</p>
@@ -879,11 +804,6 @@ body.modal-travado{ overflow:hidden; }
       </div>
 
       <div class="faq-item">
-        <button class="faq-pergunta">Qual a diferença entre o mapa grátis e o guia completo? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
-        <div class="faq-resposta"><div class="faq-resposta-in"><p>O mapa responde se a regra alcança você: são 2 páginas, com os dois critérios de enquadramento na frente e a linha do tempo até 2033 no verso. O guia responde quanto custa e o que fazer: são 30 páginas, com os fundamentos, o redutor social explicado com exemplos numéricos, a conta por faixa de aluguel e o checklist até dezembro de 2026. O mapa é o diagnóstico; o guia é o que você faz com ele.</p></div></div>
-      </div>
-
-      <div class="faq-item">
         <button class="faq-pergunta">Tenho outra dúvida antes de comprar, como falo com vocês? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
         <div class="faq-resposta"><div class="faq-resposta-in"><p>É só chamar no WhatsApp <strong>(85) 92170-0545</strong>. Respondemos rapidinho.</p></div></div>
       </div>
@@ -928,53 +848,6 @@ body.modal-travado{ overflow:hidden; }
 </div>
 
 <div class="prova-social" id="provaSocial"></div>
-
-<!-- ================= MODAL MAPA GRÁTIS ================= -->
-<div class="modal-overlay" id="modalMapa" aria-hidden="true">
-  <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modalMapaTitulo">
-    <button type="button" class="modal-fechar" id="modalMapaFechar" aria-label="Fechar"><svg class="icon"><use href="#icon-x"></use></svg></button>
-
-    <div class="modal-corpo" id="modalMapaCorpo">
-      <div class="modal-icone"><svg class="icon"><use href="#icon-mail"></use></svg></div>
-      <h3 id="modalMapaTitulo">Para onde enviamos o seu mapa?</h3>
-      <p class="modal-texto">O PDF chega no seu e-mail em menos de um minuto. É por ele também que eu aviso quando o cronograma da reforma mudar de novo — e ele já mudou duas vezes este ano.</p>
-
-      <div class="modal-erro" id="modalMapaErro"></div>
-
-      <form id="modalMapaForm" class="modal-form" novalidate>
-        <div class="modal-honeypot" aria-hidden="true">
-          <label for="mapaWebsite">Não preencha este campo</label>
-          <input type="text" id="mapaWebsite" name="website" tabindex="-1" autocomplete="off">
-        </div>
-        <div class="campo">
-          <label for="mapaNome">Seu nome</label>
-          <input type="text" id="mapaNome" name="nome" autocomplete="name" required maxlength="120">
-        </div>
-        <div class="campo">
-          <label for="mapaEmail">Seu melhor e-mail</label>
-          <input type="email" id="mapaEmail" name="email" autocomplete="email" required maxlength="190">
-        </div>
-        <div class="campo">
-          <label for="mapaTelefone">Seu WhatsApp (com DDD)</label>
-          <input type="tel" id="mapaTelefone" name="telefone" autocomplete="tel" required maxlength="20" placeholder="(85) 91234-5678">
-        </div>
-        <div class="campo-consentimento">
-          <input type="checkbox" id="mapaConsentimento" name="consentimento" required>
-          <label for="mapaConsentimento">Autorizo o envio do material e de comunicações sobre a Reforma Tributária na locação, conforme a <a href="politica-de-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</label>
-        </div>
-        <button type="submit" class="btn btn-verde btn-bloco" id="modalMapaEnviar">Enviar o mapa para mim</button>
-      </form>
-    </div>
-
-    <div class="modal-sucesso" id="modalMapaSucesso">
-      <div class="icone-ok"><svg class="icon"><use href="#icon-check"></use></svg></div>
-      <h3>Prontinho!</h3>
-      <p>Seu download começou agora e o PDF também já está a caminho do seu e-mail.</p>
-    </div>
-  </div>
-</div>
-
-<a href="pdf/Mapa_da_Locacao.pdf" download="Mapa-da-Reforma-Tributaria-na-Locacao.pdf" id="linkDownloadMapa" style="display:none" aria-hidden="true"></a>
 
 <script>
 (function(){
@@ -1093,124 +966,6 @@ var provaSocialDados = [
 
   setTimeout(mostrarProximo, 4000);
   setInterval(mostrarProximo, 15000);
-})();
-</script>
-
-<script>
-// Modal do Mapa da Locação grátis: coleta nome + e-mail antes do download,
-// grava o lead (via /api/subscribe.php) e dispara o download normalmente.
-(function(){
-  var overlay = document.getElementById('modalMapa');
-  var btnAbrir = document.getElementById('abrirMapaGratis');
-  var btnFechar = document.getElementById('modalMapaFechar');
-  var form = document.getElementById('modalMapaForm');
-  var corpo = document.getElementById('modalMapaCorpo');
-  var sucesso = document.getElementById('modalMapaSucesso');
-  var erroBox = document.getElementById('modalMapaErro');
-  var btnEnviar = document.getElementById('modalMapaEnviar');
-  var linkDownload = document.getElementById('linkDownloadMapa');
-  if(!overlay || !btnAbrir || !form) return;
-
-  function limparErro(){ erroBox.textContent = ''; erroBox.classList.remove('mostrar'); }
-  function mostrarErro(msg){ erroBox.textContent = msg; erroBox.classList.add('mostrar'); }
-
-  function abrirModal(){
-    overlay.classList.add('aberto');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-travado');
-    setTimeout(function(){ document.getElementById('mapaNome').focus(); }, 300);
-  }
-
-  function fecharModal(){
-    overlay.classList.remove('aberto');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-travado');
-    setTimeout(function(){
-      corpo.style.display = '';
-      sucesso.classList.remove('mostrar');
-      form.reset();
-      limparErro();
-    }, 300);
-  }
-
-  // Normaliza o WhatsApp para o formato 55DDD9XXXXXXXX antes de mandar pro Supabase:
-  // confere se o DDD foi digitado, completa o 9º dígito quando faltar e confirma
-  // que sobraram os 8 dígitos do número (xxxx-xxxx).
-  function normalizarTelefoneBR(valor){
-    var d = String(valor || '').replace(/\D/g, '');
-    if(d.length === 12 || d.length === 13){
-      if(d.indexOf('55') === 0){ d = d.slice(2); }
-    }
-    if(d.length === 10){ d = d.slice(0, 2) + '9' + d.slice(2); }
-    if(d.length !== 11){
-      return { ok:false, erro:'Digite seu WhatsApp com DDD, no formato (85) 91234-5678.' };
-    }
-    var ddd = d.slice(0, 2);
-    var resto = d.slice(2);
-    if(!/^[1-9][1-9]$/.test(ddd)){
-      return { ok:false, erro:'Digite o DDD do seu WhatsApp (2 números antes do celular).' };
-    }
-    if(!/^9\d{8}$/.test(resto)){
-      return { ok:false, erro:'Confira o número do WhatsApp: faltam dígitos depois do DDD (xxxx-xxxx).' };
-    }
-    return { ok:true, valor:'55' + d };
-  }
-
-  btnAbrir.addEventListener('click', abrirModal);
-  btnFechar.addEventListener('click', fecharModal);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) fecharModal(); });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && overlay.classList.contains('aberto')) fecharModal();
-  });
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    limparErro();
-
-    var nome = document.getElementById('mapaNome').value.trim();
-    var email = document.getElementById('mapaEmail').value.trim();
-    var telefoneNorm = normalizarTelefoneBR(document.getElementById('mapaTelefone').value);
-    var consentimento = document.getElementById('mapaConsentimento').checked;
-    var website = document.getElementById('mapaWebsite').value;
-
-    if(nome.length < 2){ mostrarErro('Digite seu nome completo.'); return; }
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ mostrarErro('Digite um e-mail válido.'); return; }
-    if(!telefoneNorm.ok){ mostrarErro(telefoneNorm.erro); return; }
-    if(!consentimento){ mostrarErro('Marque a autorização para receber o material.'); return; }
-
-    form.classList.add('enviando');
-    btnEnviar.textContent = 'Enviando...';
-
-    fetch('/api/token.php')
-      .then(function(r){ return r.json(); })
-      .then(function(token){
-        return fetch('/api/subscribe.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nome: nome, email: email, telefone: telefoneNorm.valor, consentimento: consentimento, website: website,
-            ts: token.ts, sig: token.sig
-          })
-        });
-      })
-      .then(function(r){ return r.json().then(function(dados){ return { status: r.status, dados: dados }; }); })
-      .then(function(res){
-        if(res.status !== 200 || !res.dados || res.dados.ok !== true){
-          throw new Error((res.dados && res.dados.erro) || 'falha');
-        }
-        linkDownload.click();
-        corpo.style.display = 'none';
-        sucesso.classList.add('mostrar');
-        setTimeout(fecharModal, 3200);
-      })
-      .catch(function(){
-        mostrarErro('Não conseguimos enviar agora. Tente de novo em instantes, ou escreva no WhatsApp.');
-      })
-      .finally(function(){
-        form.classList.remove('enviando');
-        btnEnviar.textContent = 'Enviar o mapa para mim';
-      });
-  });
 })();
 </script>
 
