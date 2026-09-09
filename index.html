@@ -149,6 +149,8 @@ strong{ color:var(--ink); font-weight:700; }
   max-width:16ch; margin-bottom:20px; text-wrap:balance;
 }
 .hero h1 em{ font-style:normal; color:var(--dourado); }
+.hero .gancho{ font-size:clamp(18px,2vw,21px); font-weight:700; color:#fff; max-width:46ch; margin-bottom:14px; line-height:1.4; }
+.hero .gancho em{ font-style:normal; color:var(--dourado); }
 .hero .sub{ font-size:clamp(16.5px,1.6vw,19px); color:#C7D3E0; max-width:52ch; margin-bottom:30px; }
 .hero .ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px; }
 .btn{
@@ -238,6 +240,23 @@ strong{ color:var(--ink); font-weight:700; }
 .contador .un i{ display:block; font-style:normal; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; margin-top:4px; opacity:.85; }
 @media (max-width:780px){ .urgencia .wrap{ flex-direction:column; text-align:center; } }
 
+/* ================= GANCHO DOS 2 CRITÉRIOS ================= */
+.criterio{
+  background:radial-gradient(900px 460px at 50% 0%, rgba(227,174,75,.12) 0%, transparent 65%), var(--navy);
+  padding:76px 0; text-align:center;
+}
+.criterio-caixa{ max-width:680px; margin:0 auto; }
+.criterio .tag{
+  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--dourado); background:rgba(227,174,75,.12);
+  border:1px solid rgba(227,174,75,.35); padding:7px 13px; border-radius:99px; margin-bottom:20px;
+}
+.criterio h2{ color:#fff; font-size:clamp(24px,3.4vw,34px); line-height:1.25; margin-bottom:18px; text-wrap:balance; }
+.criterio h2 em{ font-style:normal; color:var(--dourado); }
+.criterio p{ color:#C7D3E0; font-size:17px; margin:0 0 14px; }
+.criterio strong{ color:var(--dourado); }
+.criterio .criterio-gatilho{ color:#fff; font-weight:700; font-size:18px; margin:22px 0 26px; }
+
 /* ================= SEÇÕES GERAIS ================= */
 .secao{ padding:84px 0; }
 .secao.faixa{ background:var(--bg-2); }
@@ -265,8 +284,24 @@ strong{ color:var(--ink); font-weight:700; }
 @media (max-width:600px){ .dores-grid{ grid-template-columns:1fr; } }
 
 /* ---------- conteúdo / o que tem dentro ---------- */
-.conteudo-layout{ display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; }
+.paginas-reais{
+  display:flex; gap:18px; overflow-x:auto; padding:6px 6px 24px; margin-bottom:8px;
+  scroll-snap-type:x proximity;
+}
+.paginas-reais .pagina-real{ flex:none; width:180px; scroll-snap-align:start; text-align:center; }
+.paginas-reais .pagina-real img{
+  width:100%; border-radius:10px; border:1px solid var(--line); box-shadow:var(--sombra);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.paginas-reais .pagina-real:hover img{ transform:translateY(-6px); box-shadow:var(--sombra-lg); }
+.paginas-reais .pagina-real span{
+  display:block; margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:11.5px;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); font-weight:600;
+}
+@media (max-width:640px){ .paginas-reais .pagina-real{ width:150px; } }
 .lista-check{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+.lista-check.grade{ display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; }
+@media (max-width:720px){ .lista-check.grade{ grid-template-columns:1fr; } }
 .lista-check li{
   display:flex; align-items:flex-start; gap:13px; font-size:16.5px; color:var(--ink-2);
   background:var(--branco); border:1px solid var(--line); border-radius:12px; padding:15px 18px;
@@ -278,61 +313,35 @@ strong{ color:var(--ink); font-weight:700; }
   display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; margin-top:1px;
 }
 .lista-check li strong{ color:var(--ink); }
-.pdf-mock{ position:relative; }
-.pdf-mock .folha{
-  background:var(--branco); border-radius:18px; box-shadow:var(--sombra-lg); padding:30px 28px;
-  border:1px solid var(--line); position:relative; z-index:2; transform:rotate(-2deg);
-  transition:transform .3s ease;
-}
-.pdf-mock:hover .folha{ transform:rotate(0deg); }
-.pdf-mock .folha .barra{ height:9px; border-radius:5px; background:var(--bg-2); margin-bottom:11px; }
-.pdf-mock .folha .barra.curta{ width:60%; }
-.pdf-mock .folha .barra.laranja{ background:var(--laranja); width:38%; height:12px; margin-bottom:18px; }
-.pdf-mock .tag-flutuante{
-  position:absolute; z-index:3; background:var(--navy); color:#fff; padding:10px 16px; border-radius:11px;
-  font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600; box-shadow:var(--sombra);
-  display:inline-flex; align-items:center; gap:6px;
-}
-.pdf-mock .tag-flutuante.t1{ top:-16px; right:-10px; animation:boiar 5s ease-in-out infinite; }
-.pdf-mock .tag-flutuante.t2{ bottom:-16px; left:-14px; background:var(--laranja); animation:boiar 5s ease-in-out infinite; animation-delay:-2.5s; }
-@keyframes boiar{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
-@media (max-width:900px){ .conteudo-layout{ grid-template-columns:1fr; } .pdf-mock{ order:-1; max-width:340px; margin:0 auto; } }
 
 /* ---------- comparativo ---------- */
-.tabela-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:16px; background:var(--branco); box-shadow:var(--sombra); }
-table{ width:100%; border-collapse:collapse; min-width:560px; font-size:15.5px; }
-thead th{
-  background:var(--bg-2); text-align:left; padding:16px 20px; font-family:'IBM Plex Mono',monospace;
-  font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-weight:600;
-  border-bottom:1px solid var(--line);
+.passos-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:8px; }
+.passo{
+  background:var(--branco); border:1px solid var(--line); border-radius:16px; padding:26px 24px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-tbody td{ padding:16px 20px; border-bottom:1px solid var(--line); color:var(--ink-2); vertical-align:middle; }
-tbody tr:last-child td{ border-bottom:none; }
-tbody tr.destaque td{ background:linear-gradient(90deg,#FBEDE4,transparent); font-weight:700; color:var(--ink); }
-td.preco{ font-family:'IBM Plex Mono',monospace; font-weight:700; white-space:nowrap; }
-td.preco.bom{ color:var(--laranja); font-size:16.5px; }
+.passo:hover{ transform:translateY(-5px); box-shadow:var(--sombra); border-color:#D8CFBB; }
+.passo-num{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:22px; color:var(--laranja); margin-bottom:10px; }
+.passo h4{ font-size:16.5px; margin-bottom:6px; }
+.passo p{ margin:0; font-size:14.5px; color:var(--ink-2); }
+@media (max-width:900px){ .passos-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:600px){ .passos-grid{ grid-template-columns:1fr; } }
 .comparativo-nota{ text-align:center; margin-top:30px; font-size:18px; color:var(--ink); font-weight:600; }
-@media (max-width:640px){
-  .tabela-wrap{ overflow-x:visible; border:none; box-shadow:none; background:none; }
-  table{ display:block; min-width:0; width:100%; }
-  thead{ display:none; }
-  tbody{ display:flex; flex-direction:column; gap:14px; }
-  tbody tr{
-    display:block; background:var(--branco); border:1px solid var(--line); border-radius:14px;
-    box-shadow:var(--sombra); overflow:hidden;
-  }
-  tbody tr.destaque{ border-color:var(--laranja); border-width:2px; }
-  tbody td{
-    display:flex; align-items:center; justify-content:space-between; gap:14px;
-    padding:12px 16px; border-bottom:1px solid var(--line); text-align:right; white-space:normal;
-  }
-  tbody tr td:last-child{ border-bottom:none; }
-  tbody td::before{
-    content:attr(data-rotulo); flex:none; text-align:left;
-    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);
-  }
-}
+
+/* ---------- alinhamento (o que é / o que não é) ---------- */
+.alinhamento-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:900px; margin:0 auto; }
+.alinhamento-card{ border-radius:18px; padding:28px 26px; border:1px solid var(--line); background:var(--branco); }
+.alinhamento-card h4{ font-size:17px; margin-bottom:16px; }
+.alinhamento-card ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+.alinhamento-card li{ display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--ink-2); }
+.alinhamento-card .marca{ flex:none; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; margin-top:1px; }
+.alinhamento-card.nao{ border-color:#F3C6C6; background:#FDF4F4; }
+.alinhamento-card.nao h4{ color:#B3261E; }
+.alinhamento-card.nao .marca{ background:#FDECEC; color:#B3261E; }
+.alinhamento-card.sim{ border-color:#CFE7D2; background:var(--verde-bg); }
+.alinhamento-card.sim h4{ color:var(--verde); }
+.alinhamento-card.sim .marca{ background:#fff; color:var(--verde); }
+@media (max-width:680px){ .alinhamento-grid{ grid-template-columns:1fr; } }
 
 /* ================= PREÇOS ================= */
 .precos-grid{ display:flex; justify-content:center; }
@@ -424,9 +433,19 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 }
 .cta-final .conteudo{ position:relative; z-index:2; max-width:640px; margin:0 auto; }
 .cta-final h2{ color:#fff; font-size:clamp(26px,4vw,36px); margin-bottom:16px; text-wrap:balance; }
-.cta-final p.lead{ color:#C7D3E0; font-size:17.5px; margin-bottom:30px; }
+.cta-final p.lead{ color:#C7D3E0; font-size:17.5px; margin-bottom:22px; }
+.cta-final-lista{
+  list-style:none; margin:0 0 26px; padding:0; text-align:center; font-size:14px; color:#C7D3E0;
+}
+.cta-final-lista li{ display:inline; }
+.cta-final-lista li + li::before{ content:' · '; color:#5E6B7D; }
+.cta-final-preco{
+  font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:clamp(30px,4vw,40px); color:var(--dourado);
+  margin-bottom:18px;
+}
 .cta-final .whats-link{ display:block; margin-top:20px; color:#AEBBCA; font-size:14.5px; text-decoration:underline; text-underline-offset:3px; }
 .cta-final .whats-link:hover{ color:#fff; }
+.cta-final-garantia{ color:#AEBBCA; font-size:13.5px; margin-top:16px; margin-bottom:0; }
 
 /* ================= FOOTER ================= */
 .rodape{ background:var(--navy); color:#93A2B4; padding:48px 0 32px; }
@@ -537,15 +556,16 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
   <div class="wrap">
     <div class="hero-texto">
       <span class="eyebrow"><span class="ponto"></span>Reforma tributária · locação de imóveis</span>
-      <h1>Alugar imóvel vai mudar de regra. <em>Entenda antes de dezembro de 2026.</em></h1>
-      <p class="sub">Um guia visual de 30 páginas para você descobrir, sem juridiquês, se e como o novo IBS/CBS vai pesar no seu aluguel.</p>
+      <h1>Você tem imóvel alugado?</h1>
+      <p class="gancho">Descubra se a Reforma Tributária pode atingir os seus aluguéis — e o que você precisa organizar antes de <em>1º de dezembro</em>.</p>
+      <p class="sub">Um guia visual de 30 páginas para você entender, em português simples, se isso pode aumentar o imposto do seu aluguel, quanto os descontos podem reduzir essa conta e quando você precisa se preocupar.</p>
       <div class="ctas">
-        <a href="#precos" class="btn btn-primario">Quero o guia completo →</a>
+        <a href="#precos" class="btn btn-primario">Quero entender meu caso →</a>
       </div>
       <div class="confianca">
-        <span><svg class="icon"><use href="#icon-lock"></use></svg>Compra segura via Hotmart</span>
+        <span><svg class="icon"><use href="#icon-coin"></use></svg>R$ 47</span>
+        <span><svg class="icon"><use href="#icon-zap"></use></svg>Acesso imediato</span>
         <span><svg class="icon"><use href="#icon-check-circle"></use></svg>Garantia de 7 dias</span>
-        <span><svg class="icon"><use href="#icon-file"></use></svg>Acesso imediato em PDF</span>
       </div>
     </div>
     <div class="hero-foto">
@@ -603,38 +623,46 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
   </div>
 </section>
 
+<!-- ================= GANCHO DOS 2 CRITÉRIOS ================= -->
+<section class="criterio" id="criterio">
+  <div class="wrap">
+    <div class="criterio-caixa reveal">
+      <span class="tag">A pergunta que decide tudo</span>
+      <h2>Você pode ter <em>3 imóveis alugados</em> e ainda assim não ser contribuinte.</h2>
+      <p>Mas pode existir um detalhe que muda completamente essa resposta.</p>
+      <p>O guia mostra os <strong>dois critérios</strong> que você precisa analisar para entender onde o seu patrimônio se encaixa.</p>
+      <p class="criterio-gatilho">Descubra antes de dezembro.</p>
+      <a href="#precos" class="btn btn-primario">Quero descobrir →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= O QUE TEM DENTRO ================= -->
 <section class="secao faixa" id="conteudo">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
-      <span class="tag">O que você recebe</span>
+      <span class="tag">Você recebe</span>
       <h2>30 páginas visuais. Sem juridiquês, sem 40 páginas de lei.</h2>
-      <p>Só o que você precisa entender e decidir, explicado com exemplos de aluguel de verdade.</p>
+      <p>Não é um curso de 8 horas. É um mapa visual para você entender o que realmente importa.</p>
     </div>
-    <div class="conteudo-layout">
-      <ul class="lista-check reveal">
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Fundamentos da reforma</strong> explicados com exemplos práticos de locação, sem juridiquês.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Os dois critérios</strong> que definem se você vira "contribuinte" da nova regra.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Linha do tempo oficial 2026 → 2033</strong>, com a alíquota aplicável em cada ano.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>O redutor social</strong>: como funciona e o quanto ele pode reduzir a sua base de cálculo.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>O alerta de dezembro de 2026</strong>: a mudança de prazo mais recente, já atualizada no material.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Checklist prático</strong>, passo a passo, do que fazer antes do prazo virar problema.</span></li>
-        <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Glossário rápido</strong> dos termos novos: IBS, CBS, NFS-e e mais.</span></li>
-      </ul>
-      <div class="pdf-mock reveal d1">
-        <div class="folha">
-          <div class="barra laranja"></div>
-          <div class="barra"></div>
-          <div class="barra curta"></div>
-          <div class="barra"></div>
-          <div class="barra"></div>
-          <div class="barra curta"></div>
-          <div class="barra"></div>
-        </div>
-        <div class="tag-flutuante t1"><svg class="icon"><use href="#icon-file"></use></svg>30 páginas</div>
-        <div class="tag-flutuante t2"><svg class="icon"><use href="#icon-check"></use></svg>Revisado</div>
-      </div>
+
+    <div class="paginas-reais reveal">
+      <div class="pagina-real"><img src="img/pagina-capa.png" alt="Capa do guia: Reforma Tributária na Locação de Imóveis"><span>Capa</span></div>
+      <div class="pagina-real"><img src="img/pagina-resumo.png" alt="Página de resumo: os dois critérios, a redução de 70% e o redutor social de R$ 600"><span>Resumo em 1 página</span></div>
+      <div class="pagina-real"><img src="img/pagina-calculo.png" alt="Exemplo de cálculo passo a passo do imposto sobre um aluguel de R$ 3.000"><span>Como calcular</span></div>
+      <div class="pagina-real"><img src="img/pagina-linha-do-tempo.png" alt="Linha do tempo completa da reforma, de 2026 a 2033"><span>Linha do tempo</span></div>
+      <div class="pagina-real"><img src="img/pagina-checklist.png" alt="Checklist de organização com 18 itens divididos em 4 blocos"><span>Checklist</span></div>
     </div>
+
+    <ul class="lista-check grade reveal">
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Fundamentos da reforma</strong> explicados com exemplos práticos de locação, sem juridiquês.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Os dois critérios</strong> que definem se você passa a pagar o novo imposto — os "contribuintes" da nova regra.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Linha do tempo oficial 2026 → 2033</strong>, mostrando quando você precisa se preocupar em cada ano.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>O redutor social</strong>: um desconto que pode reduzir bastante o quanto você paga.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>O alerta de dezembro de 2026</strong>: a mudança de prazo mais recente, já atualizada no material.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Checklist prático</strong>, passo a passo, do que fazer antes do prazo virar problema.</span></li>
+      <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Glossário rápido</strong> dos termos novos: IBS, CBS, NFS-e e mais.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -642,43 +670,50 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 <section class="secao faixa" id="comparativo">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
-      <span class="tag">Por que vale a pena</span>
-      <h2>O mesmo assunto custa até R$ 3.120 em outro lugar</h2>
-      <p>Estes são valores praticados hoje por instituições para explicar exatamente este tema.</p>
+      <span class="tag">Como o guia é organizado</span>
+      <h2>Em menos de 1 hora você vai entender</h2>
+      <p>O guia foi feito para o proprietário que quer respostas diretas, não uma aula inteira.</p>
     </div>
-    <div class="tabela-wrap reveal">
-      <table>
-        <thead><tr><th>Quem</th><th>Formato</th><th>Público</th><th>Preço</th></tr></thead>
-        <tbody>
-          <tr>
-            <td data-rotulo="Quem">UniSecovi</td>
-            <td data-rotulo="Formato">24h ao vivo, com certificado</td>
-            <td data-rotulo="Público">Incorporadores, investidores</td>
-            <td class="preco" data-rotulo="Preço">R$ 2.247 a R$ 3.120</td>
-          </tr>
-          <tr>
-            <td data-rotulo="Quem">Curso de tributarista</td>
-            <td data-rotulo="Formato">8h gravadas</td>
-            <td data-rotulo="Público">Contadores e tributaristas</td>
-            <td class="preco" data-rotulo="Preço">R$ 1.497</td>
-          </tr>
-          <tr>
-            <td data-rotulo="Quem">ABADI</td>
-            <td data-rotulo="Formato">12h ao vivo, telepresencial</td>
-            <td data-rotulo="Público">Administradoras de locação</td>
-            <td class="preco" data-rotulo="Preço">R$ 616 a R$ 770</td>
-          </tr>
-          <tr class="destaque">
-            <td data-rotulo="Quem">Guia da Reforma na Locação</td>
-            <td data-rotulo="Formato">PDF visual, no seu tempo</td>
-            <td data-rotulo="Público">Você, proprietário</td>
-            <td class="preco bom" data-rotulo="Preço">R$ 47</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="passos-grid">
+      <div class="passo reveal"><span class="passo-num">01</span><h4>Se a reforma alcança você</h4><p>Os critérios que importam para o proprietário.</p></div>
+      <div class="passo reveal"><span class="passo-num">02</span><h4>O que acontece com seus aluguéis</h4><p>Residencial, comercial e temporada.</p></div>
+      <div class="passo reveal"><span class="passo-num">03</span><h4>O que muda até 2033</h4><p>Uma linha do tempo visual.</p></div>
+      <div class="passo reveal"><span class="passo-num">04</span><h4>Quais descontos existem</h4><p>Inclusive o redutor social.</p></div>
+      <div class="passo reveal"><span class="passo-num">05</span><h4>O que você precisa organizar</h4><p>Checklist prático.</p></div>
+      <div class="passo reveal"><span class="passo-num">06</span><h4>O que perguntar ao seu contador ou advogado</h4><p>Para não chegar despreparado à transição.</p></div>
     </div>
-    <p class="comparativo-nota reveal">Você não precisa de 24 horas de aula. Precisa de menos de 1 hora de leitura direto ao ponto.</p>
-    <p class="comparativo-nota reveal">R$ 47 é menos de 8% do curso mais barato desta lista — e você lê hoje, no seu horário, quantas vezes quiser.</p>
+    <p class="comparativo-nota reveal">Tudo em menos de 1 hora de leitura.</p>
+  </div>
+</section>
+
+<!-- ================= NÃO É PARA VOCÊ SE... ================= -->
+<section class="secao" id="alinhamento">
+  <div class="wrap">
+    <div class="cabecalho-secao reveal">
+      <span class="tag">Para alinhar expectativas</span>
+      <h2>O que este guia é — e o que ele não é</h2>
+    </div>
+    <div class="alinhamento-grid">
+      <div class="alinhamento-card nao reveal">
+        <h4>Isto NÃO é:</h4>
+        <ul>
+          <li><span class="marca"><svg class="icon"><use href="#icon-x"></use></svg></span><span>Uma consultoria tributária individual</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-x"></use></svg></span><span>Uma análise personalizada dos seus imóveis</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-x"></use></svg></span><span>Um curso de contabilidade</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-x"></use></svg></span><span>Uma promessa de economia tributária</span></li>
+        </ul>
+      </div>
+      <div class="alinhamento-card sim reveal d1">
+        <h4>É:</h4>
+        <ul>
+          <li><span class="marca"><svg class="icon"><use href="#icon-check"></use></svg></span><span>Um mapa para você entender a nova regra</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-check"></use></svg></span><span>Um material visual</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-check"></use></svg></span><span>Exemplos práticos</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-check"></use></svg></span><span>Checklist</span></li>
+          <li><span class="marca"><svg class="icon"><use href="#icon-check"></use></svg></span><span>Linguagem simples</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -723,7 +758,7 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
           importHotmart();
         </script>
         <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=2" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-bloco">
-          <svg class="icon"><use href="#icon-lock"></use></svg>Quero garantir meu guia agora
+          <svg class="icon"><use href="#icon-lock"></use></svg>Quero saber se sou contribuinte →
           <img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none">
         </a>
 
@@ -815,9 +850,18 @@ td.preco.bom{ color:var(--laranja); font-size:16.5px; }
 <!-- ================= CTA FINAL ================= -->
 <section class="cta-final" id="comprar">
   <div class="wrap conteudo">
-    <h2>Dezembro de 2026 está mais perto do que parece.</h2>
-    <p class="lead">Leve menos de uma hora para entender o que muda no seu aluguel, antes que o prazo vire um problema de última hora.</p>
-    <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=2" class="hotmart-fb hotmart__button-checkout btn btn-primario"><svg class="icon"><use href="#icon-lock"></use></svg>Quero garantir meu guia agora</a>
+    <h2>Você não precisa dominar a Reforma Tributária.</h2>
+    <p class="lead">Precisa apenas entender como ela pode alcançar os seus imóveis.</p>
+    <ul class="cta-final-lista">
+      <li>30 páginas</li>
+      <li>Linguagem simples</li>
+      <li>Exemplos práticos</li>
+      <li>Checklist</li>
+      <li>Atualizado para o cronograma de dezembro de 2026</li>
+    </ul>
+    <div class="cta-final-preco">R$ 47</div>
+    <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=2" class="hotmart-fb hotmart__button-checkout btn btn-primario"><svg class="icon"><use href="#icon-lock"></use></svg>Quero entender meus aluguéis →</a>
+    <p class="cta-final-garantia">Garantia de 7 dias.</p>
     <a class="whats-link" href="https://wa.me/5585921700545?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20do%20Guia%20da%20Reforma%20na%20Loca%C3%A7%C3%A3o%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Prefere tirar dúvidas antes? Fale no WhatsApp (85) 92170-0545</a>
   </div>
 </section>
