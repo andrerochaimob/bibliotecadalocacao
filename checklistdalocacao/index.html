@@ -191,28 +191,13 @@ strong{ color:var(--ink); font-weight:700; }
   position:relative; z-index:2; width:100%; background:#fff; border-radius:18px; overflow:hidden;
   border:5px solid rgba(255,255,255,.12); box-shadow:var(--sombra-lg);
 }
-.painel-noticias .painel-topo{
-  display:flex; align-items:center; gap:8px; background:var(--laranja); color:#fff;
-  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; padding:10px 14px;
-}
-.painel-noticias .ponto-vivo{ width:8px; height:8px; border-radius:50%; background:#fff; flex:none; animation:pulsar 1.6s ease-in-out infinite; }
-.painel-noticias .painel-tela{ position:relative; height:280px; background:#fff; }
-.painel-noticias .painel-tela img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:top center; padding:10px;
-  opacity:0; transition:opacity .6s ease;
-}
-.painel-noticias .painel-tela img.ativa{ opacity:1; }
-.painel-noticias .painel-dots{ display:flex; justify-content:center; gap:7px; padding:12px; background:var(--bg-2); }
-.painel-noticias .painel-dots .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .25s ease, transform .25s ease; }
-.painel-noticias .painel-dots .dot.ativo{ background:var(--laranja); transform:scale(1.25); }
+.painel-noticias .foto-capa{ width:100%; display:block; }
 .hero-foto .selo{
   position:absolute; z-index:3; left:50%; bottom:-18px; transform:translateX(-50%);
   background:#fff; color:var(--navy); padding:10px 18px; border-radius:11px; box-shadow:var(--sombra);
   font-size:13px; font-weight:700; white-space:nowrap; text-align:center; line-height:1.3;
 }
 .hero-foto .selo span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
-@media (max-width:420px){ .painel-noticias .painel-tela{ height:230px; } }
 
 @media (max-width:900px){
   .hero .wrap{ grid-template-columns:1fr; text-align:center; gap:40px; }
@@ -570,18 +555,8 @@ strong{ color:var(--ink); font-weight:700; }
     </div>
     <div class="hero-foto">
       <div class="anel"></div>
-      <div class="painel-noticias" id="painelPreviaCk">
-        <div class="painel-topo"><span class="ponto-vivo"></span>Prévia real do checklist</div>
-        <div class="painel-tela">
-          <img class="ativa" src="img/pagina-proprietario.png" alt="Página 1 do checklist: Antes de entregar a chave, para o proprietário">
-          <img src="img/pagina-inquilino.png" alt="Página 2 do checklist: Antes de assinar, para o inquilino">
-          <img src="img/pagina-contrato.png" alt="Página 3 do checklist: O que não pode faltar no contrato">
-          <img src="img/pagina-vistoria.png" alt="Página 4 do checklist: A vistoria, feita do jeito que serve como prova">
-          <img src="img/pagina-primeiros30dias.png" alt="Página 5 do checklist: Depois de assinar, os primeiros 30 dias">
-        </div>
-        <div class="painel-dots">
-          <span class="dot ativo"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
+      <div class="painel-noticias">
+        <img class="foto-capa" src="img/capa-biblioteca-da-locacao.jpeg" alt="Guia Biblioteca da Locação aberto ao lado do notebook, sobre a mesa">
       </div>
       <div class="selo">Base na Lei 8.245/1991<span>Lei do Inquilinato</span></div>
     </div>
@@ -936,21 +911,6 @@ strong{ color:var(--ink); font-weight:700; }
     });
   }, { threshold:.12 });
   alvos.forEach(function(el){ observador.observe(el); });
-
-  // Painel do hero: alterna as páginas reais do checklist automaticamente
-  var painelPreviaCk = document.getElementById('painelPreviaCk');
-  if(painelPreviaCk){
-    var imagensPreviaCk = painelPreviaCk.querySelectorAll('.painel-tela img');
-    var dotsPreviaCk = painelPreviaCk.querySelectorAll('.painel-dots .dot');
-    var indicePreviaCk = 0;
-    setInterval(function(){
-      imagensPreviaCk[indicePreviaCk].classList.remove('ativa');
-      dotsPreviaCk[indicePreviaCk].classList.remove('ativo');
-      indicePreviaCk = (indicePreviaCk + 1) % imagensPreviaCk.length;
-      imagensPreviaCk[indicePreviaCk].classList.add('ativa');
-      dotsPreviaCk[indicePreviaCk].classList.add('ativo');
-    }, 3800);
-  }
 
   // Acordeão do FAQ
   document.querySelectorAll('.faq-item').forEach(function(item){
