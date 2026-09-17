@@ -101,7 +101,7 @@ strong{ color:var(--ink); font-weight:700; }
 .header .marca-txt{ font-family:'Archivo',sans-serif; font-weight:800; font-size:15px; color:var(--ink); line-height:1.15; }
 .header .marca-txt span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
 .header nav{ display:flex; align-items:center; gap:26px; }
-.header nav a{ color:var(--ink-2); text-decoration:none; font-size:14.5px; font-weight:600; }
+.header nav a{ color:var(--ink-2); text-decoration:none; font-size:14.5px; font-weight:600; cursor:pointer; }
 .header nav a:hover{ color:var(--laranja); }
 .header .cta-mini{
   background:var(--laranja); color:#fff !important; padding:10px 18px; border-radius:8px;
@@ -122,7 +122,7 @@ strong{ color:var(--ink); font-weight:700; }
   position:relative;
   background:radial-gradient(1000px 520px at 18% -10%, rgba(227,174,75,.10) 0%, transparent 62%), var(--navy);
   color:#fff;
-  padding:64px 0 90px;
+  padding:54px 0 64px;
   overflow:hidden;
 }
 .hero::before, .hero::after{
@@ -136,23 +136,25 @@ strong{ color:var(--ink); font-weight:700; }
   50%{ transform:translate(24px,-26px) scale(1.08); }
 }
 .hero .wrap{ position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:52px; align-items:center; }
-.eyebrow{
+.eyebrow, .badge-urgencia{
   display:inline-flex; align-items:center; gap:8px;
-  font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.04em;
   color:var(--dourado); background:rgba(227,174,75,.12); border:1px solid rgba(227,174,75,.35);
-  padding:7px 13px; border-radius:99px; margin-bottom:22px;
+  padding:8px 14px; border-radius:99px; margin-bottom:22px;
 }
+.eyebrow{ letter-spacing:.12em; text-transform:uppercase; }
 .eyebrow .ponto{ width:7px; height:7px; border-radius:50%; background:var(--laranja-2); animation:pulsar 1.6s ease-in-out infinite; }
 @keyframes pulsar{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.35; transform:scale(1.5);} }
+.badge-urgencia strong{ color:var(--dourado); }
 .hero h1{
-  font-size:clamp(32px,4.6vw,52px); font-weight:900; line-height:1.08; letter-spacing:-.03em; color:#fff;
-  max-width:16ch; margin-bottom:20px; text-wrap:balance;
+  font-size:clamp(32px,4.6vw,50px); font-weight:900; line-height:1.1; letter-spacing:-.03em; color:#fff;
+  max-width:17ch; margin-bottom:18px; text-wrap:balance;
 }
 .hero h1 em{ font-style:normal; color:var(--dourado); }
-.hero .gancho{ font-size:clamp(18px,2vw,21px); font-weight:700; color:#fff; max-width:46ch; margin-bottom:14px; line-height:1.4; }
-.hero .gancho em{ font-style:normal; color:var(--dourado); }
-.hero .sub{ font-size:clamp(16.5px,1.6vw,19px); color:#C7D3E0; max-width:52ch; margin-bottom:30px; }
-.hero .ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px; }
+.hero .sub{ font-size:clamp(16.5px,1.6vw,19px); color:#C7D3E0; max-width:50ch; margin-bottom:0; }
+.confianca{ display:flex; flex-wrap:wrap; gap:16px 22px; font-size:13.5px; color:#AEBBCA; }
+.confianca span{ display:inline-flex; align-items:center; gap:6px; }
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:9px;
   font-family:'Source Sans 3',sans-serif; font-weight:700; font-size:16px;
@@ -171,96 +173,53 @@ strong{ color:var(--ink); font-weight:700; }
 }
 .btn-primario:hover{ filter:brightness(1.07); box-shadow:0 18px 38px -12px rgba(234,106,31,.8); }
 @keyframes respirar{ 0%,100%{ box-shadow:0 14px 32px -12px rgba(234,106,31,.65);} 50%{ box-shadow:0 18px 44px -10px rgba(234,106,31,.9);} }
-.btn-fantasma{
-  background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.35);
-}
-.btn-fantasma:hover{ background:rgba(255,255,255,.16); }
-.btn-verde{ background:linear-gradient(135deg,var(--verde-2),var(--verde)); color:#fff; box-shadow:0 14px 30px -12px rgba(28,122,52,.55); }
-.btn-verde:hover{ filter:brightness(1.06); }
 .btn-bloco{ width:100%; }
-.confianca{ display:flex; flex-wrap:wrap; gap:16px 22px; font-size:13.5px; color:#AEBBCA; }
-.confianca span{ display:inline-flex; align-items:center; gap:6px; }
+.tela-cta{ text-align:center; margin-top:10px; }
 
-.hero-foto{ position:relative; justify-self:center; width:min(400px,92vw); }
-.hero-foto .anel{
-  position:absolute; inset:-14px; border:2px dashed rgba(227,174,75,.4); border-radius:30px; z-index:1;
-  animation:girar 40s linear infinite;
+/* ---------- cartão de oferta (hero) ---------- */
+.oferta-card{ text-align:left; }
+.oferta-topo{ display:flex; gap:14px; align-items:flex-start; margin-bottom:16px; }
+.oferta-topo img{ width:70px; border-radius:7px; border:1px solid var(--line); box-shadow:var(--sombra); flex:none; }
+.oferta-topo h3{ font-size:19px; margin-bottom:4px; }
+.oferta-topo p{ font-size:13.5px; color:var(--ink-2); margin:0; }
+.link-secundario{
+  display:block; text-align:center; margin-top:14px; font-size:14px; color:var(--ink-2);
+  font-weight:600; text-decoration:underline; text-underline-offset:3px;
 }
-@keyframes girar{ to{ transform:rotate(360deg); } }
-.painel-noticias{
-  position:relative; z-index:2; width:100%; background:#fff; border-radius:18px; overflow:hidden;
-  border:5px solid rgba(255,255,255,.12); box-shadow:var(--sombra-lg);
-}
-.painel-noticias .painel-topo{
-  display:flex; align-items:center; gap:8px; background:var(--laranja); color:#fff;
-  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; padding:10px 14px;
-}
-.painel-noticias .ponto-vivo{ width:8px; height:8px; border-radius:50%; background:#fff; flex:none; animation:pulsar 1.6s ease-in-out infinite; }
-.painel-noticias .painel-tela{ position:relative; height:200px; background:#fff; }
-.painel-noticias .painel-tela img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:14px;
-  opacity:0; transition:opacity .6s ease;
-}
-.painel-noticias .painel-tela img.ativa{ opacity:1; }
-.painel-noticias .painel-dots{ display:flex; justify-content:center; gap:7px; padding:12px; background:var(--bg-2); }
-.painel-noticias .painel-dots .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .25s ease, transform .25s ease; }
-.painel-noticias .painel-dots .dot.ativo{ background:var(--laranja); transform:scale(1.25); }
-.hero-foto .selo{
-  position:absolute; z-index:3; left:50%; bottom:-18px; transform:translateX(-50%);
-  background:#fff; color:var(--navy); padding:10px 18px; border-radius:11px; box-shadow:var(--sombra);
-  font-size:13px; font-weight:700; white-space:nowrap; text-align:center; line-height:1.3;
-}
-.hero-foto .selo span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
-@media (max-width:420px){ .painel-noticias .painel-tela{ height:170px; } }
-
+.link-secundario:hover{ color:var(--laranja); }
 @media (max-width:900px){
-  .hero .wrap{ grid-template-columns:1fr; text-align:center; gap:40px; }
+  .hero .wrap{ grid-template-columns:1fr; text-align:center; gap:36px; }
   .hero h1{ max-width:none; margin-left:auto; margin-right:auto; }
   .hero .sub{ margin-left:auto; margin-right:auto; }
-  .hero .ctas{ justify-content:center; }
-  .confianca{ justify-content:center; }
-  .hero-foto{ order:-1; }
+  .oferta-card{ text-align:left; }
 }
 
-/* ================= URGÊNCIA ================= */
-.urgencia{
-  background:linear-gradient(135deg,var(--laranja),var(--laranja-2));
-  color:#fff; padding:20px 0;
+/* ================= CALLOUT (gancho dos 2 critérios) ================= */
+.callout{
+  background:#FBEDE4; border-left:4px solid var(--laranja); border-radius:12px;
+  padding:20px 22px; margin:34px auto 0; max-width:640px; text-align:left;
 }
-.urgencia .wrap{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 28px; }
-.urgencia p{ margin:0; font-size:15px; max-width:62ch; color:#FFEADC; }
-.urgencia strong{ color:#fff; }
-.contador{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
-.contador .un{
-  background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25); border-radius:9px;
-  padding:9px 12px; text-align:center; min-width:64px;
-}
-.contador .un b{ display:block; font-family:'IBM Plex Mono',monospace; font-size:21px; font-weight:700; line-height:1; }
-.contador .un i{ display:block; font-style:normal; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; margin-top:4px; opacity:.85; }
-@media (max-width:780px){ .urgencia .wrap{ flex-direction:column; text-align:center; } }
+.callout p{ margin:0 0 8px; font-size:15.5px; color:var(--ink-2); }
+.callout p:last-child{ margin-bottom:0; }
+.callout strong{ color:var(--ink); }
 
-/* ================= GANCHO DOS 2 CRITÉRIOS ================= */
-.criterio{
-  background:radial-gradient(900px 460px at 50% 0%, rgba(227,174,75,.12) 0%, transparent 65%), var(--navy);
-  padding:76px 0; text-align:center;
+/* ---------- lista de perguntas (tela 2) ---------- */
+.lista-perguntas{ list-style:none; margin:0 auto 0; padding:0; max-width:720px; display:flex; flex-direction:column; gap:12px; }
+.lista-perguntas li{
+  display:flex; align-items:flex-start; gap:13px; font-size:16.5px; color:var(--ink);
+  font-weight:600; background:var(--branco); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
+  transition:transform .2s ease, box-shadow .2s ease;
 }
-.criterio-caixa{ max-width:680px; margin:0 auto; }
-.criterio .tag{
-  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
-  letter-spacing:.12em; text-transform:uppercase; color:var(--dourado); background:rgba(227,174,75,.12);
-  border:1px solid rgba(227,174,75,.35); padding:7px 13px; border-radius:99px; margin-bottom:20px;
+.lista-perguntas li:hover{ transform:translateX(4px); box-shadow:var(--sombra); }
+.lista-perguntas li .ponto-icone{
+  flex:none; width:26px; height:26px; border-radius:50%; background:#FBEDE4; color:var(--laranja);
+  display:flex; align-items:center; justify-content:center; font-size:13px; margin-top:1px;
 }
-.criterio h2{ color:#fff; font-size:clamp(24px,3.4vw,34px); line-height:1.25; margin-bottom:18px; text-wrap:balance; }
-.criterio h2 em{ font-style:normal; color:var(--dourado); }
-.criterio p{ color:#C7D3E0; font-size:17px; margin:0 0 14px; }
-.criterio strong{ color:var(--dourado); }
-.criterio .criterio-gatilho{ color:#fff; font-weight:700; font-size:18px; margin:22px 0 26px; }
 
 /* ================= SEÇÕES GERAIS ================= */
-.secao{ padding:84px 0; }
+.secao{ padding:72px 0; }
 .secao.faixa{ background:var(--bg-2); }
-.cabecalho-secao{ text-align:center; max-width:680px; margin:0 auto 52px; }
+.cabecalho-secao{ text-align:center; max-width:680px; margin:0 auto 44px; }
 .cabecalho-secao .tag{
   display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
   letter-spacing:.12em; text-transform:uppercase; color:var(--laranja); background:#FBEDE4;
@@ -268,20 +227,6 @@ strong{ color:var(--ink); font-weight:700; }
 }
 .cabecalho-secao h2{ font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.15; margin-bottom:14px; text-wrap:balance; }
 .cabecalho-secao p{ font-size:17.5px; color:var(--ink-2); max-width:56ch; margin:0 auto; }
-
-/* ---------- dores ---------- */
-.dores-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:40px; }
-.dor{
-  background:var(--branco); border:1px solid var(--line); border-radius:16px; padding:26px 24px;
-  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.dor:hover{ transform:translateY(-5px); box-shadow:var(--sombra); border-color:#D8CFBB; }
-.dor .emoji{ font-size:26px; margin-bottom:14px; display:block; color:var(--laranja); }
-.dor p{ margin:0; font-size:16px; color:var(--ink); font-weight:600; line-height:1.4; }
-.dores-cta{ text-align:center; }
-.dores-cta p{ font-size:18px; color:var(--ink); font-weight:600; margin-bottom:18px; }
-@media (max-width:900px){ .dores-grid{ grid-template-columns:1fr 1fr; } }
-@media (max-width:600px){ .dores-grid{ grid-template-columns:1fr; } }
 
 /* ---------- conteúdo / o que tem dentro ---------- */
 .paginas-reais{
@@ -313,23 +258,10 @@ strong{ color:var(--ink); font-weight:700; }
   display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; margin-top:1px;
 }
 .lista-check li strong{ color:var(--ink); }
-
-/* ---------- comparativo ---------- */
-.passos-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:8px; }
-.passo{
-  background:var(--branco); border:1px solid var(--line); border-radius:16px; padding:26px 24px;
-  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.passo:hover{ transform:translateY(-5px); box-shadow:var(--sombra); border-color:#D8CFBB; }
-.passo-num{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:22px; color:var(--laranja); margin-bottom:10px; }
-.passo h4{ font-size:16.5px; margin-bottom:6px; }
-.passo p{ margin:0; font-size:14.5px; color:var(--ink-2); }
-@media (max-width:900px){ .passos-grid{ grid-template-columns:1fr 1fr; } }
-@media (max-width:600px){ .passos-grid{ grid-template-columns:1fr; } }
-.comparativo-nota{ text-align:center; margin-top:30px; font-size:18px; color:var(--ink); font-weight:600; }
+.comparativo-nota{ text-align:center; margin-top:28px; font-size:16.5px; color:var(--ink); font-weight:600; max-width:70ch; margin-left:auto; margin-right:auto; }
 
 /* ---------- alinhamento (o que é / o que não é) ---------- */
-.alinhamento-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:900px; margin:0 auto; }
+.alinhamento-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:900px; margin:44px auto 0; }
 .alinhamento-card{ border-radius:18px; padding:28px 26px; border:1px solid var(--line); background:var(--branco); }
 .alinhamento-card h4{ font-size:17px; margin-bottom:16px; }
 .alinhamento-card ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
@@ -343,40 +275,29 @@ strong{ color:var(--ink); font-weight:700; }
 .alinhamento-card.sim .marca{ background:#fff; color:var(--verde); }
 @media (max-width:680px){ .alinhamento-grid{ grid-template-columns:1fr; } }
 
-/* ================= PREÇOS ================= */
-.precos-grid{ display:flex; justify-content:center; }
+/* ================= OFERTA / CARTÃO DE PREÇO ================= */
 .card-preco{
-  background:var(--branco); border:1px solid var(--line); border-radius:22px; padding:36px 32px;
+  background:var(--branco); border:1px solid var(--line); border-radius:22px; padding:32px 28px;
   display:flex; flex-direction:column; position:relative; transition:transform .25s ease, box-shadow .25s ease;
   max-width:560px; width:100%;
 }
-.card-preco:hover{ transform:translateY(-6px); box-shadow:var(--sombra-lg); }
 .card-preco .chip{
   align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700;
-  letter-spacing:.08em; text-transform:uppercase; padding:7px 13px; border-radius:99px; margin-bottom:18px;
+  letter-spacing:.08em; text-transform:uppercase; padding:7px 13px; border-radius:99px; margin-bottom:16px;
 }
 .card-pago{
   background:linear-gradient(180deg,var(--branco),var(--branco)); border:2px solid var(--laranja);
   box-shadow:0 26px 70px -30px rgba(194,65,12,.4);
 }
 .card-pago .chip{ background:#FBEDE4; color:var(--laranja); }
-.card-preco h3{ font-size:23px; margin-bottom:10px; }
-.card-preco .desc{ font-size:15.5px; color:var(--ink-2); margin-bottom:22px; }
-.card-preco .beneficios{ list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:11px; flex:1; }
-.card-preco .beneficios li{ display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--ink-2); }
-.card-preco .beneficios li b{ color:var(--verde); flex:none; }
-.card-pago .beneficios li b{ color:var(--laranja); }
-.preco-bloco{ margin:6px 0 22px; }
-.preco-de{ font-size:14.5px; font-weight:600; color:var(--ink-3); margin-bottom:2px; }
-.preco-de s{ color:var(--ink-2); text-decoration-color:var(--laranja); text-decoration-thickness:2px; }
-.riscado{ text-decoration:line-through; text-decoration-color:var(--laranja); color:var(--ink-3); font-weight:600; font-size:.72em; margin-right:6px; }
+.preco-bloco{ margin:4px 0 18px; }
 .preco-bloco .destaque-preco{
-  font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:clamp(34px,4vw,46px); color:var(--laranja);
+  font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:clamp(32px,4vw,44px); color:var(--laranja);
   line-height:1; letter-spacing:-.02em;
 }
-.preco-bloco .destaque-preco small{ font-size:16px; font-weight:600; color:var(--ink-2); margin-left:6px; }
+.preco-bloco .destaque-preco small{ font-size:15px; font-weight:600; color:var(--ink-2); margin-left:6px; }
 .preco-bloco .sub-preco{ font-size:13px; color:var(--ink-3); margin-top:8px; }
-.selo-confianca{ display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:18px; font-size:12.5px; color:var(--ink-3); }
+.selo-confianca{ display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:16px; font-size:12.5px; color:var(--ink-3); }
 .selo-confianca span{ display:inline-flex; align-items:center; gap:5px; }
 .selos-seguranca{
   display:flex; flex-wrap:wrap; justify-content:center; gap:12px 26px;
@@ -399,6 +320,7 @@ strong{ color:var(--ink); font-weight:700; }
   content:''; position:absolute; inset:-8px; border:2px dashed rgba(28,122,52,.4); border-radius:50%;
   animation:girar 30s linear infinite;
 }
+@keyframes girar{ to{ transform:rotate(360deg); } }
 .garantia-box h3{ font-size:23px; margin-bottom:8px; color:var(--verde); }
 .garantia-box p{ margin:0; font-size:15.5px; color:var(--ink-2); }
 .garantia-box .legal{ font-size:12.5px; color:var(--ink-3); margin-top:10px; }
@@ -425,7 +347,7 @@ strong{ color:var(--ink); font-weight:700; }
 /* ---------- CTA final ---------- */
 .cta-final{
   background:radial-gradient(1000px 500px at 85% 10%, rgba(227,174,75,.10) 0%, transparent 62%), var(--navy);
-  color:#fff; padding:80px 0; text-align:center; position:relative; overflow:hidden;
+  color:#fff; padding:70px 0; text-align:center; position:relative; overflow:hidden;
 }
 .cta-final::before{
   content:''; position:absolute; width:380px; height:380px; border-radius:50%; background:var(--laranja-2);
@@ -458,23 +380,53 @@ strong{ color:var(--ink); font-weight:700; }
 .rodape .marca-rodape .marca-icone .icon{ width:21px; height:21px; }
 .rodape .marca-rodape span{ font-family:'Archivo',sans-serif; font-weight:800; color:#fff; font-size:16px; }
 .rodape .contato{ display:flex; gap:20px; flex-wrap:wrap; font-size:14.5px; }
-.rodape .contato a{ color:#C7D3E0; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+.rodape .contato a{ color:#C7D3E0; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:6px; cursor:pointer; }
 .rodape .contato a:hover{ color:#fff; }
 .rodape .aviso{ font-size:13px; line-height:1.6; max-width:820px; color:#7E8CA0; margin-bottom:10px; }
 .rodape .copy{ font-size:12.5px; color:#5E6B7D; margin-top:20px; }
 
-/* ================= FLUTUANTES ================= */
-.whats-flutuante{
-  position:fixed; right:20px; bottom:20px; z-index:200; width:60px; height:60px; border-radius:50%;
-  background:var(--verde-2); color:#fff; display:flex; align-items:center; justify-content:center;
-  font-size:28px; text-decoration:none; box-shadow:0 16px 34px -12px rgba(47,168,74,.7);
-}
-.whats-flutuante::after{
-  content:''; position:absolute; inset:0; border-radius:50%; border:2px solid var(--verde-2);
-  animation:onda 2.2s ease-out infinite;
-}
-@keyframes onda{ 0%{ transform:scale(1); opacity:.7; } 100%{ transform:scale(1.9); opacity:0; } }
+/* ================= PAINEL DE IMPRENSA (tela do prazo) ================= */
+.prazo-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center; margin:8px 0 34px; }
+@media (max-width:900px){ .prazo-grid{ grid-template-columns:1fr; text-align:center; } }
+.prazo-imagem{ margin-bottom:20px; }
+.prazo-imagem img{ width:100%; border-radius:14px; border:1px solid var(--line); box-shadow:var(--sombra); }
+.prazo-linha{ font-size:17px; color:var(--ink); font-weight:600; margin:0 0 8px; }
+.prazo-linha strong{ color:var(--laranja); font-family:'IBM Plex Mono',monospace; }
+.prazo-ancoragem{ font-size:16px; color:var(--ink-2); margin-bottom:0; }
 
+.hero-foto{ position:relative; justify-self:center; width:min(400px,92vw); }
+.hero-foto .anel{
+  position:absolute; inset:-14px; border:2px dashed rgba(227,174,75,.4); border-radius:30px; z-index:1;
+  animation:girar 40s linear infinite;
+}
+.painel-noticias{
+  position:relative; z-index:2; width:100%; background:#fff; border-radius:18px; overflow:hidden;
+  border:5px solid rgba(255,255,255,.12); box-shadow:var(--sombra-lg);
+}
+.painel-noticias .painel-topo{
+  display:flex; align-items:center; gap:8px; background:var(--laranja); color:#fff;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; padding:10px 14px;
+}
+.painel-noticias .ponto-vivo{ width:8px; height:8px; border-radius:50%; background:#fff; flex:none; animation:pulsar 1.6s ease-in-out infinite; }
+.painel-noticias .painel-tela{ position:relative; height:200px; background:#fff; }
+.painel-noticias .painel-tela img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:14px;
+  opacity:0; transition:opacity .6s ease;
+}
+.painel-noticias .painel-tela img.ativa{ opacity:1; }
+.painel-noticias .painel-dots{ display:flex; justify-content:center; gap:7px; padding:12px; background:var(--bg-2); }
+.painel-noticias .painel-dots .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .25s ease, transform .25s ease; }
+.painel-noticias .painel-dots .dot.ativo{ background:var(--laranja); transform:scale(1.25); }
+.hero-foto .selo{
+  position:absolute; z-index:3; left:50%; bottom:-18px; transform:translateX(-50%);
+  background:#fff; color:var(--navy); padding:10px 18px; border-radius:11px; box-shadow:var(--sombra);
+  font-size:13px; font-weight:700; white-space:nowrap; text-align:center; line-height:1.3;
+}
+.hero-foto .selo span{ display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
+@media (max-width:420px){ .painel-noticias .painel-tela{ height:170px; } }
+
+/* ================= FLUTUANTES ================= */
 .barra-mobile{
   position:fixed; left:0; right:0; bottom:0; z-index:190; background:var(--navy); padding:12px 16px;
   display:flex; align-items:center; justify-content:space-between; gap:14px;
@@ -483,13 +435,10 @@ strong{ color:var(--ink); font-weight:700; }
 }
 .barra-mobile.mostrar{ transform:translateY(0); }
 .barra-mobile .info{ color:#fff; }
-.barra-mobile .info .de{ font-size:11px; color:#8695A6; }
-.barra-mobile .info .de s{ text-decoration-color:var(--laranja); }
 .barra-mobile .info b{ display:block; font-family:'IBM Plex Mono',monospace; font-size:17px; color:var(--dourado); }
 .barra-mobile .info span{ font-size:11px; color:#AEBBCA; }
 .barra-mobile .btn{ padding:12px 18px; font-size:14.5px; }
 @media (min-width:781px){ .barra-mobile{ display:none; } }
-@media (max-width:780px){ .whats-flutuante{ bottom:86px; } }
 
 .prova-social{ position:fixed; left:18px; bottom:20px; z-index:195; max-width:290px; }
 .prova-social .toast{
@@ -508,12 +457,26 @@ strong{ color:var(--ink); font-weight:700; }
 @media (max-width:780px){ .prova-social{ left:14px; bottom:96px; max-width:72vw; } }
 
 @media (max-width:780px){
-  .secao{ padding:60px 0; }
-  .autor-card, .garantia-box{ padding:28px 22px; }
+  .secao{ padding:52px 0; }
+  .garantia-box{ padding:28px 22px; }
 }
 </style>
 </head>
 <body>
+<script type="text/javascript">
+  function importHotmart(){
+    var imported = document.createElement('script');
+    imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+    document.head.appendChild(imported);
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+    document.head.appendChild(link);
+  }
+  importHotmart();
+</script>
+
 <svg style="display:none" aria-hidden="true">
   <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
   <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/></symbol>
@@ -544,112 +507,86 @@ strong{ color:var(--ink); font-weight:700; }
     </div>
     <nav>
       <a href="#conteudo">O que você recebe</a>
-      <a href="#comparativo">Por que vale a pena</a>
+      <a href="#prazo">O prazo</a>
       <a href="#faq">Dúvidas</a>
-      <a href="#precos" class="cta-mini">Ver preços</a>
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=header" class="cta-mini hotmart-fb hotmart__button-checkout btn-comprar" data-origem="header">Comprar · R$ 47<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
     </nav>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
+<!-- ================= TELA 1 — A OFERTA ================= -->
 <section class="hero" id="topo">
   <div class="wrap">
     <div class="hero-texto">
-      <span class="eyebrow"><span class="ponto"></span>Reforma tributária · locação de imóveis</span>
-      <h1>Você tem imóvel alugado?</h1>
-      <p class="gancho">Descubra se a Reforma Tributária pode atingir os seus aluguéis e o que você precisa organizar antes de <em>1º de dezembro</em>.</p>
-      <p class="sub">Um guia visual de 30 páginas para você entender, em português simples, se isso pode aumentar o imposto do seu aluguel, quanto os descontos podem reduzir essa conta e quando você precisa se preocupar.</p>
-      <div class="ctas">
-        <a href="#precos" class="btn btn-primario">Quero entender meu caso →</a>
-      </div>
-      <div class="confianca">
-        <span><svg class="icon"><use href="#icon-coin"></use></svg>R$ 47</span>
-        <span><svg class="icon"><use href="#icon-zap"></use></svg>Acesso imediato</span>
-        <span><svg class="icon"><use href="#icon-check-circle"></use></svg>Garantia de 7 dias</span>
-      </div>
+      <span class="badge-urgencia"><svg class="icon icon-inline"><use href="#icon-calendar"></use></svg>Cronograma oficial: 1º de dezembro de 2026 · faltam <strong class="js-dias-restantes">--</strong> dias</span>
+      <h1>Seu aluguel pode pagar imposto novo a partir de 1º de dezembro.</h1>
+      <p class="sub">Descubra em menos de 1 hora se a Reforma Tributária alcança os seus imóveis — e o que fazer antes do prazo.</p>
     </div>
-    <div class="hero-foto">
-      <div class="anel"></div>
-      <div class="painel-noticias" id="painelNoticias">
-        <div class="painel-topo"><span class="ponto-vivo"></span>Repercutindo agora na imprensa</div>
-        <div class="painel-tela">
-          <img class="ativa" src="img/noticia1.jpeg" alt="Manchete: Reforma Tributária acende alerta para quem vive de aluguel e pode exigir revisão do patrimônio">
-          <img src="img/noticia2.jpeg" alt="Manchete: Imposto sobre aluguel na Reforma Tributária: o que muda, quem paga e como pagar menos de forma legal">
-          <img src="img/noticia3.jpeg" alt="Manchete: Reforma Tributária pode dobrar imposto sobre aluguel? Entenda as mudanças">
-          <img src="img/noticia4.jpeg" alt="Manchete: Taxação de aluguéis deve dobrar, diz entidade">
-          <img src="img/noticia5.jpeg" alt="Manchete: Aluguel: veja quem terá de pagar CBS e IBS na reforma tributária">
-        </div>
-        <div class="painel-dots">
-          <span class="dot ativo"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+
+    <div class="oferta-card card-preco card-pago reveal">
+      <span class="chip">Guia completo</span>
+      <div class="oferta-topo">
+        <img src="img/pagina-capa.png" alt="Capa do Guia Visual da Reforma na Locação">
+        <div>
+          <h3>Guia Visual da Reforma na Locação</h3>
+          <p>30 páginas · PDF · acesso imediato · atualizado com dezembro/2026</p>
         </div>
       </div>
-      <div class="selo">Assunto do momento<span>Já é notícia em todo o país</span></div>
+      <div class="preco-bloco">
+        <div class="destaque-preco">R$ 47<small>à vista, ou 12x de R$ 4,86</small></div>
+        <div class="sub-preco">Pagamento único, sem assinatura. Checkout seguro da Hotmart.</div>
+      </div>
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=hero" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-bloco btn-comprar" data-origem="hero">
+        <svg class="icon"><use href="#icon-lock"></use></svg>Comprar agora — R$ 47
+        <img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none">
+      </a>
+      <a href="#conteudo" class="link-secundario">Ver o que tem dentro ↓</a>
+      <div class="selo-confianca">
+        <span><svg class="icon"><use href="#icon-check-circle"></use></svg>Garantia de 7 dias</span>
+        <span><svg class="icon"><use href="#icon-zap"></use></svg>Acesso imediato</span>
+        <span><svg class="icon"><use href="#icon-lock"></use></svg>Pagamento seguro</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================= URGÊNCIA / CONTADOR ================= -->
-<div class="urgencia">
-  <div class="wrap">
-    <p><svg class="icon icon-inline"><use href="#icon-calendar"></use></svg>Em <strong>30/07/2026</strong> saiu o cronograma oficial: <strong>1º de dezembro de 2026</strong> é a data marcada para locações, cessões e arrendamentos entrarem no novo sistema fiscal. Isso é antes do que a maior parte do mercado está comunicando.</p>
-    <div class="contador" id="contador" aria-label="Tempo restante até 1º de dezembro de 2026">
-      <div class="un"><b id="c-dias">--</b><i>dias</i></div>
-      <div class="un"><b id="c-horas">--</b><i>horas</i></div>
-      <div class="un"><b id="c-min">--</b><i>min</i></div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= DORES ================= -->
+<!-- ================= TELA 2 — ESTE GUIA RESPONDE ================= -->
 <section class="secao" id="para-quem">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
-      <span class="tag">Para quem é isso</span>
-      <h2>Talvez você já tenha se perguntado…</h2>
-      <p>Se alguma dessas perguntas já passou pela sua cabeça, este guia foi escrito para você.</p>
+      <span class="tag">Este guia responde</span>
+      <h2>6 perguntas que você provavelmente já se fez</h2>
     </div>
-    <div class="dores-grid">
-      <div class="dor reveal"><span class="emoji"><svg class="icon"><use href="#icon-home"></use></svg></span><p>"Meu aluguel vai ficar mais caro para o inquilino, ou o custo cai pra mim?"</p></div>
-      <div class="dor reveal d1"><span class="emoji"><svg class="icon"><use href="#icon-clipboard"></use></svg></span><p>"Eu preciso virar 'contribuinte' só por alugar um apartamento?"</p></div>
-      <div class="dor reveal d2"><span class="emoji"><svg class="icon"><use href="#icon-buildings"></use></svg></span><p>"Tenho dois ou três imóveis alugados: isso muda alguma coisa pra mim?"</p></div>
-      <div class="dor reveal"><span class="emoji"><svg class="icon"><use href="#icon-help"></use></svg></span><p>"O que é esse tal de IBS e CBS, e isso substitui o quê?"</p></div>
-      <div class="dor reveal d1"><span class="emoji"><svg class="icon"><use href="#icon-coin"></use></svg></span><p>"Existe algum desconto para quem aluga para morar (residencial)?"</p></div>
-      <div class="dor reveal d2"><span class="emoji"><svg class="icon"><use href="#icon-hourglass"></use></svg></span><p>"O que eu preciso fazer, na prática, antes de dezembro de 2026?"</p></div>
+    <ul class="lista-perguntas reveal">
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-home"></use></svg></span>"Meu aluguel vai ficar mais caro para o inquilino, ou o custo cai pra mim?"</li>
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-clipboard"></use></svg></span>"Eu preciso virar 'contribuinte' só por alugar um apartamento?"</li>
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-buildings"></use></svg></span>"Tenho dois ou três imóveis alugados: isso muda alguma coisa pra mim?"</li>
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-help"></use></svg></span>"O que é esse tal de IBS e CBS, e isso substitui o quê?"</li>
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-coin"></use></svg></span>"Existe algum desconto para quem aluga para morar (residencial)?"</li>
+      <li><span class="ponto-icone"><svg class="icon"><use href="#icon-hourglass"></use></svg></span>"O que eu preciso fazer, na prática, antes de dezembro de 2026?"</li>
+    </ul>
+    <div class="callout reveal">
+      <p>Você pode ter <strong>3 imóveis alugados</strong> e ainda assim não ser contribuinte.</p>
+      <p>O guia mostra os <strong>dois critérios</strong> que decidem isso — descubra antes de dezembro.</p>
     </div>
-    <div class="dores-cta reveal">
-      <p>Se você chegou até aqui balançando a cabeça, o próximo passo é simples.</p>
-      <a href="#precos" class="btn btn-primario">Ver como o guia responde isso →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= GANCHO DOS 2 CRITÉRIOS ================= -->
-<section class="criterio" id="criterio">
-  <div class="wrap">
-    <div class="criterio-caixa reveal">
-      <span class="tag">A pergunta que decide tudo</span>
-      <h2>Você pode ter <em>3 imóveis alugados</em> e ainda assim não ser contribuinte.</h2>
-      <p>Mas pode existir um detalhe que muda completamente essa resposta.</p>
-      <p>O guia mostra os <strong>dois critérios</strong> que você precisa analisar para entender onde o seu patrimônio se encaixa.</p>
-      <p class="criterio-gatilho">Descubra antes de dezembro.</p>
-      <a href="#precos" class="btn btn-primario">Quero descobrir →</a>
+    <div class="tela-cta reveal">
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=respostas" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="respostas">Quero as respostas — R$ 47<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
     </div>
   </div>
 </section>
 
-<!-- ================= O QUE TEM DENTRO ================= -->
+<!-- ================= TELA 3 — O QUE VOCÊ RECEBE ================= -->
 <section class="secao faixa" id="conteudo">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
       <span class="tag">Você recebe</span>
-      <h2>30 páginas visuais. Sem juridiquês, sem 40 páginas de lei.</h2>
+      <h2>30 páginas visuais. Sem juridiquês.</h2>
       <p>Não é um curso de 8 horas. É um mapa visual para você entender o que realmente importa.</p>
     </div>
 
     <div class="paginas-reais reveal">
       <div class="pagina-real"><img src="img/pagina-capa.png" alt="Capa do guia: Reforma Tributária na Locação de Imóveis"><span>Capa</span></div>
       <div class="pagina-real"><img src="img/pagina-resumo.png" alt="Página de resumo: os dois critérios, a redução de 70% e o redutor social de R$ 600"><span>Resumo em 1 página</span></div>
-      <div class="pagina-real"><img src="img/pagina-calculo.png" alt="Exemplo de cálculo passo a passo do imposto sobre um aluguel de R$ 3.000"><span>Como calcular</span></div>
       <div class="pagina-real"><img src="img/pagina-linha-do-tempo.png" alt="Linha do tempo completa da reforma, de 2026 a 2033"><span>Linha do tempo</span></div>
       <div class="pagina-real"><img src="img/pagina-checklist.png" alt="Checklist de organização com 18 itens divididos em 4 blocos"><span>Checklist</span></div>
     </div>
@@ -663,36 +600,67 @@ strong{ color:var(--ink); font-weight:700; }
       <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Checklist prático</strong>, passo a passo, do que fazer antes do prazo virar problema.</span></li>
       <li><span class="check"><svg class="icon"><use href="#icon-check"></use></svg></span><span><strong>Glossário rápido</strong> dos termos novos: IBS, CBS, NFS-e e mais.</span></li>
     </ul>
+
+    <p class="comparativo-nota reveal">Fundamentos → seus aluguéis → linha do tempo → descontos → checklist → o que perguntar ao contador. Tudo em menos de 1 hora de leitura.</p>
+
+    <div class="tela-cta reveal">
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=conteudo" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="conteudo">Comprar o guia — R$ 47<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
+    </div>
   </div>
 </section>
 
-<!-- ================= COMPARATIVO ================= -->
-<section class="secao faixa" id="comparativo">
+<!-- ================= TELA 4 — O PRAZO ================= -->
+<section class="secao" id="prazo">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
-      <span class="tag">Como o guia é organizado</span>
-      <h2>Em menos de 1 hora você vai entender</h2>
-      <p>O guia foi feito para o proprietário que quer respostas diretas, não uma aula inteira.</p>
+      <span class="tag">O prazo</span>
+      <h2>1º de dezembro de 2026 muda o jogo</h2>
+      <p>Em 30/07/2026 saiu o cronograma oficial: locações, cessões e arrendamentos entram no novo sistema fiscal nessa data — antes do que a maior parte do mercado está comunicando.</p>
     </div>
-    <div class="passos-grid">
-      <div class="passo reveal"><span class="passo-num">01</span><h4>Se a reforma alcança você</h4><p>Os critérios que importam para o proprietário.</p></div>
-      <div class="passo reveal"><span class="passo-num">02</span><h4>O que acontece com seus aluguéis</h4><p>Residencial, comercial e temporada.</p></div>
-      <div class="passo reveal"><span class="passo-num">03</span><h4>O que muda até 2033</h4><p>Uma linha do tempo visual.</p></div>
-      <div class="passo reveal"><span class="passo-num">04</span><h4>Quais descontos existem</h4><p>Inclusive o redutor social.</p></div>
-      <div class="passo reveal"><span class="passo-num">05</span><h4>O que você precisa organizar</h4><p>Checklist prático.</p></div>
-      <div class="passo reveal"><span class="passo-num">06</span><h4>O que perguntar ao seu contador ou advogado</h4><p>Para não chegar despreparado à transição.</p></div>
+
+    <div class="prazo-grid">
+      <div class="prazo-texto">
+        <div class="prazo-imagem reveal"><img src="img/pagina-linha-do-tempo.png" alt="Linha do tempo completa da reforma, de 2026 a 2033"></div>
+        <p class="prazo-linha reveal">Faltam <strong class="js-dias-restantes">--</strong> dias para o novo cronograma entrar em vigor.</p>
+        <p class="prazo-ancoragem reveal">R$ 47 hoje para saber se o seu caso muda em dezembro.</p>
+      </div>
+      <div class="hero-foto reveal">
+        <div class="anel"></div>
+        <div class="painel-noticias" id="painelNoticias">
+          <div class="painel-topo"><span class="ponto-vivo"></span>Repercutindo agora na imprensa</div>
+          <div class="painel-tela">
+            <img class="ativa" src="img/noticia1.jpeg" alt="Manchete: Reforma Tributária acende alerta para quem vive de aluguel e pode exigir revisão do patrimônio">
+            <img src="img/noticia2.jpeg" alt="Manchete: Imposto sobre aluguel na Reforma Tributária: o que muda, quem paga e como pagar menos de forma legal">
+            <img src="img/noticia3.jpeg" alt="Manchete: Reforma Tributária pode dobrar imposto sobre aluguel? Entenda as mudanças">
+            <img src="img/noticia4.jpeg" alt="Manchete: Taxação de aluguéis deve dobrar, diz entidade">
+            <img src="img/noticia5.jpeg" alt="Manchete: Aluguel: veja quem terá de pagar CBS e IBS na reforma tributária">
+          </div>
+          <div class="painel-dots">
+            <span class="dot ativo"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+        <div class="selo">Assunto do momento<span>Já é notícia em todo o país</span></div>
+      </div>
     </div>
-    <p class="comparativo-nota reveal">Tudo em menos de 1 hora de leitura.</p>
+
+    <div class="tela-cta reveal">
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=prazo" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="prazo">Garantir antes do prazo — R$ 47<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
+    </div>
   </div>
 </section>
 
-<!-- ================= NÃO É PARA VOCÊ SE... ================= -->
-<section class="secao" id="alinhamento">
+<!-- ================= TELA 5 — RISCO ZERO ================= -->
+<section class="secao faixa" id="garantia">
   <div class="wrap">
-    <div class="cabecalho-secao reveal">
-      <span class="tag">Para alinhar expectativas</span>
-      <h2>O que este guia é e o que ele não é</h2>
+    <div class="garantia-box reveal">
+      <div class="selo"><svg class="icon"><use href="#icon-shield"></use></svg></div>
+      <div>
+        <h3>7 dias de garantia incondicional</h3>
+        <p>Se por qualquer motivo o guia não for o que você esperava, é só chamar no WhatsApp em até 7 dias e devolvemos 100% do valor pago. Sem perguntas, sem burocracia. O risco é todo nosso.</p>
+        <p class="legal">Garantia amparada pelo Art. 49 do Código de Defesa do Consumidor, que assegura 7 dias para arrependimento em compras feitas fora de estabelecimento comercial (como pela internet).</p>
+      </div>
     </div>
+
     <div class="alinhamento-grid">
       <div class="alinhamento-card nao reveal">
         <h4>Isto NÃO é:</h4>
@@ -714,62 +682,6 @@ strong{ color:var(--ink); font-weight:700; }
         </ul>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= PREÇOS ================= -->
-<section class="secao" id="precos">
-  <div class="wrap">
-    <div class="cabecalho-secao reveal">
-      <span class="tag">Garanta o seu agora</span>
-      <h2>Tudo o que você precisa para entender a reforma</h2>
-      <p>O guia completo está pronto para download, com pagamento seguro pela Hotmart.</p>
-    </div>
-
-    <div class="precos-grid">
-
-      <div class="card-preco card-pago reveal" id="guia-completo">
-        <span class="chip">Guia completo</span>
-        <h3>Guia Visual da Reforma na Locação</h3>
-        <p class="desc">30 páginas que explicam a reforma do começo ao fim: fundamentos, enquadramento, linha do tempo completa e o checklist do que fazer antes de dezembro de 2026.</p>
-        <ul class="beneficios">
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Fundamentos + os 2 critérios de enquadramento</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Linha do tempo oficial 2026 → 2033</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Redutor social explicado com exemplos</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Checklist prático passo a passo</li>
-          <li><b><svg class="icon"><use href="#icon-check"></use></svg></b> Atualizado com o prazo de dezembro/2026</li>
-        </ul>
-        <div class="preco-bloco">
-          <div class="destaque-preco">R$ 47<small>à vista, ou 12x de R$ 4,86 no cartão</small></div>
-          <div class="sub-preco">Pagamento único. Sem assinatura, sem renovação. Formas de pagamento no checkout seguro da Hotmart.</div>
-        </div>
-
-        <script type="text/javascript">
-          function importHotmart(){
-            var imported = document.createElement('script');
-            imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
-            document.head.appendChild(imported);
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
-            document.head.appendChild(link);
-          }
-          importHotmart();
-        </script>
-        <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-bloco">
-          <svg class="icon"><use href="#icon-lock"></use></svg>Quero saber se sou contribuinte →
-          <img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none">
-        </a>
-
-        <div class="selo-confianca">
-          <span><svg class="icon"><use href="#icon-check-circle"></use></svg>Garantia de 7 dias</span>
-          <span><svg class="icon"><use href="#icon-file"></use></svg>Acesso imediato</span>
-          <span><svg class="icon"><use href="#icon-lock"></use></svg>Pagamento 100% seguro</span>
-        </div>
-      </div>
-
-    </div>
 
     <div class="selos-seguranca reveal">
       <span><svg class="icon"><use href="#icon-lock"></use></svg>Compra 100% segura</span>
@@ -777,24 +689,14 @@ strong{ color:var(--ink); font-weight:700; }
       <span><svg class="icon"><use href="#icon-check-circle"></use></svg>Processado pela Hotmart</span>
       <span><svg class="icon"><use href="#icon-lock"></use></svg>Dados protegidos (LGPD)</span>
     </div>
-  </div>
-</section>
 
-<!-- ================= GARANTIA ================= -->
-<section class="secao faixa" id="garantia">
-  <div class="wrap">
-    <div class="garantia-box reveal">
-      <div class="selo"><svg class="icon"><use href="#icon-shield"></use></svg></div>
-      <div>
-        <h3>7 dias de garantia incondicional</h3>
-        <p>Se por qualquer motivo o guia não for o que você esperava, é só chamar no WhatsApp em até 7 dias e devolvemos 100% do valor pago. Sem perguntas, sem burocracia. O risco é todo nosso.</p>
-        <p class="legal">Garantia amparada pelo Art. 49 do Código de Defesa do Consumidor, que assegura 7 dias para arrependimento em compras feitas fora de estabelecimento comercial (como pela internet).</p>
-      </div>
+    <div class="tela-cta reveal">
+      <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=garantia" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="garantia">Comprar sem risco — R$ 47<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
     </div>
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
+<!-- ================= TELA 6 — DÚVIDAS E FECHAMENTO ================= -->
 <section class="secao" id="faq">
   <div class="wrap">
     <div class="cabecalho-secao reveal">
@@ -804,13 +706,8 @@ strong{ color:var(--ink); font-weight:700; }
     <div class="faq-lista reveal">
 
       <div class="faq-item">
-        <button class="faq-pergunta">Isso é uma consultoria jurídica sobre o meu caso? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
-        <div class="faq-resposta"><div class="faq-resposta-in"><p>Não. O guia é um material informativo e educacional, que explica a reforma de forma geral. Ele não substitui uma análise jurídica ou contábil do seu caso específico. Se você precisar de uma orientação personalizada, o ideal é falar diretamente com um advogado ou contador.</p></div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-pergunta">Serve para qualquer tipo de aluguel (residencial, comercial, temporada)? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
-        <div class="faq-resposta"><div class="faq-resposta-in"><p>O guia cobre os fundamentos que valem para qualquer tipo de locação: os critérios de enquadramento, a linha do tempo e o redutor social. Ele foi pensado para o proprietário pessoa física que aluga para morar ou para uso comercial, dando a base necessária para entender onde o seu caso se encaixa.</p></div></div>
+        <button class="faq-pergunta">O que é (e o que não é) o guia? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
+        <div class="faq-resposta"><div class="faq-resposta-in"><p>É um material informativo e educacional, que explica a reforma de forma geral e visual. Não é uma consultoria jurídica ou contábil sobre o seu caso específico. Se você precisar de orientação personalizada, o ideal é falar diretamente com um advogado ou contador.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -829,18 +726,8 @@ strong{ color:var(--ink); font-weight:700; }
       </div>
 
       <div class="faq-item">
-        <button class="faq-pergunta">Quais as formas de pagamento? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
-        <div class="faq-resposta"><div class="faq-resposta-in"><p>O pagamento é feito com segurança direto no checkout da Hotmart, que aceita cartão de crédito parcelado, entre outras opções disponíveis na tela de pagamento.</p></div></div>
-      </div>
-
-      <div class="faq-item">
         <button class="faq-pergunta">E se eu não gostar do material? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
         <div class="faq-resposta"><div class="faq-resposta-in"><p>Você tem 7 dias de garantia incondicional a partir da compra. Se não for o que esperava, basta chamar no WhatsApp e devolvemos 100% do valor, sem perguntas.</p></div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-pergunta">Tenho outra dúvida antes de comprar, como falo com vocês? <span class="mais"><svg class="icon"><use href="#icon-plus"></use></svg></span></button>
-        <div class="faq-resposta"><div class="faq-resposta-in"><p>É só chamar no WhatsApp <strong>(85) 92170-0545</strong>. Respondemos rapidinho.</p></div></div>
       </div>
 
     </div>
@@ -855,12 +742,14 @@ strong{ color:var(--ink); font-weight:700; }
     <ul class="cta-final-lista">
       <li>30 páginas</li>
       <li>Linguagem simples</li>
-      <li>Exemplos práticos</li>
       <li>Checklist</li>
-      <li>Atualizado para o cronograma de dezembro de 2026</li>
+      <li>Atualizado para dezembro de 2026</li>
     </ul>
     <div class="cta-final-preco">R$ 47</div>
-    <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10" class="hotmart-fb hotmart__button-checkout btn btn-primario"><svg class="icon"><use href="#icon-lock"></use></svg>Quero entender meus aluguéis →</a>
+    <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=faq_final" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="faq_final">
+      <svg class="icon"><use href="#icon-lock"></use></svg>Comprar agora — R$ 47
+      <img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none">
+    </a>
     <p class="cta-final-garantia">Garantia de 7 dias.</p>
     <a class="whats-link" href="https://wa.me/5585921700545?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20do%20Guia%20da%20Reforma%20na%20Loca%C3%A7%C3%A3o%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Prefere tirar dúvidas antes? Fale no WhatsApp (85) 92170-0545</a>
   </div>
@@ -873,7 +762,7 @@ strong{ color:var(--ink); font-weight:700; }
       <div class="marca-rodape"><span class="marca-icone"><svg class="icon"><use href="#icon-home"></use></svg></span><span>Biblioteca da Locação</span></div>
       <div class="contato">
         <a href="https://wa.me/5585921700545" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-message"></use></svg>(85) 92170-0545</a>
-        <a href="#precos">Ver preços</a>
+        <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=rodape" class="hotmart-fb hotmart__button-checkout btn-comprar" data-origem="rodape">Comprar<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
         <a href="#faq">Dúvidas</a>
       </div>
     </div>
@@ -883,33 +772,25 @@ strong{ color:var(--ink); font-weight:700; }
   </div>
 </footer>
 
-<!-- ================= FLUTUANTES ================= -->
-<a class="whats-flutuante" href="https://wa.me/5585921700545?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20do%20Guia%20da%20Reforma%20na%20Loca%C3%A7%C3%A3o%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg class="icon"><use href="#icon-message"></use></svg></a>
-
 <div class="barra-mobile" id="barraMobile">
   <div class="info"><b>R$ 47</b><span>ou 12x R$ 4,86 · Hotmart</span></div>
-  <a href="#precos" class="btn btn-primario">Ver oferta</a>
+  <a onclick="return false;" href="https://pay.hotmart.com/X107308319K?checkoutMode=10&src=barra_fixa" class="hotmart-fb hotmart__button-checkout btn btn-primario btn-comprar" data-origem="barra_fixa">Comprar agora<img src="https://static.hotmart.com/img/btn-buy-green.png" alt="" style="display:none"></a>
 </div>
 
 <div class="prova-social" id="provaSocial"></div>
 
 <script>
 (function(){
-  // Contador regressivo até 1º de dezembro de 2026 (Brasília)
+  // Contagem de dias até 1º de dezembro de 2026 (Brasília), em formato compacto
   var alvo = new Date('2026-12-01T00:00:00-03:00').getTime();
-  function atualizarContador(){
-    var agora = Date.now();
-    var diff = alvo - agora;
+  function atualizarDias(){
+    var diff = alvo - Date.now();
     if(diff < 0) diff = 0;
-    var dias = Math.floor(diff / 86400000);
-    var horas = Math.floor((diff % 86400000) / 3600000);
-    var min = Math.floor((diff % 3600000) / 60000);
-    document.getElementById('c-dias').textContent = dias;
-    document.getElementById('c-horas').textContent = String(horas).padStart(2,'0');
-    document.getElementById('c-min').textContent = String(min).padStart(2,'0');
+    var dias = Math.ceil(diff / 86400000);
+    document.querySelectorAll('.js-dias-restantes').forEach(function(el){ el.textContent = dias; });
   }
-  atualizarContador();
-  setInterval(atualizarContador, 30000);
+  atualizarDias();
+  setInterval(atualizarDias, 60000);
 
   // Header com sombra ao rolar
   var header = document.getElementById('header');
@@ -918,7 +799,7 @@ strong{ color:var(--ink); font-weight:700; }
   function aoRolar(){
     var y = window.scrollY;
     header.classList.toggle('scrolled', y > 8);
-    barraMobile.classList.toggle('mostrar', y > hero.offsetHeight * 0.7);
+    barraMobile.classList.toggle('mostrar', y > hero.offsetHeight * 0.6);
   }
   document.addEventListener('scroll', aoRolar, { passive:true });
   aoRolar();
@@ -932,7 +813,7 @@ strong{ color:var(--ink); font-weight:700; }
   }, { threshold:.12 });
   alvos.forEach(function(el){ observador.observe(el); });
 
-  // Painel de notícias do hero: alterna as manchetes automaticamente
+  // Painel de notícias: alterna as manchetes automaticamente
   var painelNoticias = document.getElementById('painelNoticias');
   if(painelNoticias){
     var imagensNoticias = painelNoticias.querySelectorAll('.painel-tela img');
@@ -965,6 +846,15 @@ strong{ color:var(--ink); font-weight:700; }
       } else {
         item.classList.add('aberto');
         resposta.style.maxHeight = resposta.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Rastreio de clique em qualquer botão de compra (GA4)
+  document.querySelectorAll('.btn-comprar').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof gtag === 'function'){
+        gtag('event', 'click_checkout', { origem: el.getAttribute('data-origem') || '' });
       }
     });
   });
