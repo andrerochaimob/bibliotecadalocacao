@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-70NSLNTYR7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-70NSLNTYR7');
+  gtag('event', 'compra_guia_confirmada', { produto: 'guia_locacao' });
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Obrigado pela compra! Um recado antes de você começar</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E3AE4B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11.5 12 4l8 7.5'/%3E%3Cpath d='M6 10v9h5v-5h2v5h5v-9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1A30;
+  --navy-2:#12243F;
+  --navy-3:#1B3252;
+  --dourado:#E3AE4B;
+  --laranja:#E8590C;
+  --laranja-2:#C2410C;
+  --texto:#E8EDF4;
+  --texto-2:#A9B6C7;
+  --verde:#2FA84A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--texto);
+  background:radial-gradient(1200px 600px at 50% -10%,var(--navy-3) 0%,var(--navy) 60%) fixed,var(--navy);
+  min-height:100vh;padding:28px 18px calc(48px + env(safe-area-inset-bottom));
+}
+.wrap{max-width:460px;margin:0 auto;text-align:center}
+
+.selo{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(47,168,74,.14);color:#7FE095;border:1px solid rgba(47,168,74,.35);
+  font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:7px 14px;border-radius:999px;margin-bottom:18px;
+}
+.selo svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:clamp(24px,6.4vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+.sub{font-size:15.5px;line-height:1.55;color:var(--texto-2);margin-bottom:22px}
+.sub strong{color:var(--texto);font-weight:600}
+
+/* ---------- Vídeo ---------- */
+.player{
+  position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/16;
+  border-radius:18px;overflow:hidden;background:#000;
+  border:1px solid rgba(227,174,75,.35);box-shadow:0 30px 70px -20px rgba(0,0,0,.7);
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+}
+.player video{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none}
+.overlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(7,15,28,.55);border:0;color:#fff;cursor:pointer;font:inherit;width:100%;
+  transition:opacity .25s;
+}
+.overlay[hidden]{display:none}
+.overlay .play{
+  width:76px;height:76px;border-radius:50%;background:var(--laranja);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(232,89,12,.55);
+  animation:pulsa 2s ease-in-out infinite;
+}
+.overlay .play svg{width:30px;height:30px;fill:#fff;margin-left:4px}
+.overlay .rotulo{font-size:15px;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.barra{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.18)}
+.barra i{display:block;height:100%;width:0;background:var(--dourado);transition:width .25s linear}
+.aviso{margin-top:14px;font-size:13.5px;color:var(--texto-2);min-height:20px}
+.aviso.ok{color:#7FE095;font-weight:600}
+
+/* ---------- Oferta ---------- */
+.oferta{margin-top:34px;display:none}
+.oferta.aberta{display:block;animation:entra .6s ease both}
+@keyframes entra{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.divisor{width:56px;height:2px;background:var(--dourado);margin:0 auto 26px;border-radius:2px}
+.capa{
+  width:100%;max-width:300px;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;margin:0 auto 22px;
+  border-radius:14px;box-shadow:0 26px 60px -18px rgba(0,0,0,.75);
+}
+.oferta h2{font-size:clamp(22px,6vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:10px}
+.oferta p{font-size:15.5px;line-height:1.55;color:var(--texto-2);margin-bottom:22px}
+.tag-oferta{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dourado);margin-bottom:10px}
+.lista{list-style:none;text-align:left;margin:0 0 24px;display:grid;gap:10px}
+.lista li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 14px}
+.lista svg{flex:none;width:20px;height:20px;margin-top:1px;stroke:var(--verde);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.lista b{display:block;font-size:15px;font-weight:700;color:var(--texto);line-height:1.3}
+.lista span{display:block;font-size:13.5px;line-height:1.45;color:var(--texto-2);margin-top:2px}
+.entrega{font-size:13.5px;color:var(--texto-2);margin:-8px 0 22px;display:flex;align-items:center;justify-content:center;gap:8px}
+.entrega svg{width:16px;height:16px;stroke:var(--dourado);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.garantia{display:flex;gap:14px;align-items:center;text-align:left;margin-top:26px;border:1px solid rgba(227,174,75,.4);background:rgba(227,174,75,.07);border-radius:14px;padding:16px}
+.garantia .dias{flex:none;width:54px;height:54px;border-radius:50%;border:2px solid var(--dourado);color:var(--dourado);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:20px;line-height:1}
+.garantia .dias small{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.garantia p{margin:0;font-size:13.5px;line-height:1.5;color:var(--texto-2)}
+.garantia p strong{color:var(--texto)}
+.preco{margin:0 0 16px;text-align:center}
+.preco small{display:block;font-size:13px;color:var(--texto-2);margin-bottom:2px}
+.preco .valor{font-size:clamp(30px,9vw,38px);font-weight:800;letter-spacing:-.02em;color:var(--texto);line-height:1.1}
+.preco .valor span{font-size:.5em;font-weight:700;color:var(--dourado);margin-right:4px}
+.preco .vista{display:block;font-size:13.5px;color:var(--texto-2);margin-top:4px}
+.btn{
+  display:block;width:100%;background:var(--laranja);color:#fff;text-decoration:none;
+  font-weight:800;font-size:17px;padding:18px 22px;border-radius:12px;
+  box-shadow:0 14px 34px -10px rgba(232,89,12,.7);transition:transform .15s,background .15s;
+}
+.btn:hover{background:var(--laranja-2);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.seguro{margin-top:12px;font-size:12.5px;color:var(--texto-2);display:flex;align-items:center;justify-content:center;gap:6px}
+.seguro svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.rodape{margin-top:40px;font-size:12.5px;color:#6F7E92;line-height:1.6}
+.rodape a{color:#8FA0B6}
+@media (prefers-reduced-motion:reduce){.overlay .play{animation:none}.oferta.aberta{animation:none}}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <span class="selo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg>
+      Compra confirmada
+    </span>
+    <h1>Obrigado pela confiança!</h1>
+    <p class="sub">Seu Guia da Reforma Tributária na Locação foi enviado para o seu e-mail. Antes de abrir, <strong>assista a este recado rápido</strong>.</p>
+
+    <div class="player" id="player">
+      <video id="video" playsinline webkit-playsinline preload="metadata"
+             poster="img/video-poster.jpg" disablepictureinpicture disableremoteplayback
+             controlslist="nodownload noplaybackrate noremoteplayback" oncontextmenu="return false">
+        <source src="video/agradecimento.mp4" type="video/mp4">
+      </video>
+      <button type="button" class="overlay" id="btnPlay" aria-label="Assistir ao vídeo com som">
+        <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20"/></svg></span>
+        <span class="rotulo" id="rotulo">Toque para assistir (com som)</span>
+      </button>
+      <div class="barra" aria-hidden="true"><i id="progresso"></i></div>
+    </div>
+    <p class="aviso" id="aviso" role="status" aria-live="polite">Assista até o final: tenho mais uma coisa para você.</p>
+
+    <section class="oferta" id="oferta" aria-labelledby="tituloOferta">
+      <div class="divisor"></div>
+      <img class="capa" src="img/capa-kit-do-proprietario.jpg" alt="Capa do Kit do Proprietário — Locação de Imóveis" width="800" height="800">
+      <span class="tag-oferta">Uma oferta para quem acabou de comprar</span>
+      <h2 id="tituloOferta">Kit do Proprietário</h2>
+      <p>10 arquivos prontos para usar, para você alugar com contrato, vistoria e recibo no lugar certo. Sem começar do zero.</p>
+      <ul class="lista">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Contrato de locação residencial editável</b><span>Modelo em Word com quadro-resumo e o valor mensal já separado em aluguel, IPTU e condomínio.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Guia comentado dos contratos</b><span>Por que cada cláusula está escrita assim e o que ajustar no seu caso.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Termo aditivo de adequação tributária</b><span>Para contratos que já estão assinados: adequa sem precisar refazer tudo.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Termo de vistoria de entrada e saída</b><span>Ambientes, itens, medidores e chaves, para provar o estado do imóvel quando o inquilino sair.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Recibo de aluguel discriminado</b><span>Modelo mensal com cada parcela em linha própria. Emitir recibo é obrigação do locador.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Notificação de reajuste anual</b><span>Com índice, variação e novo valor, pronta para enviar ao inquilino.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Planilha de enquadramento e organização</b><span>Lance seus imóveis e a receita do ano e veja se a regra nova alcança você.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Calendário da Locação</b><span>As datas que valem para todo proprietário, com agenda dos seus contratos.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Checklist da Locação + roteiro "Comece por aqui"</b><span>O passo a passo dos primeiros 30 dias e a ordem certa de usar cada arquivo.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6"/></svg><div><b>Nota técnica: revise o contrato que você já usa</b><span>Os pontos a revisar no seu modelo atual, sem precisar trocá-lo inteiro.</span></div></li>
+      </ul>
+      <div class="entrega"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/></svg>Entrega imediata no seu e-mail</div>
+      <div class="preco">
+        <div class="valor"><span>12x</span>R$ 20,37</div>
+        <span class="vista">ou R$ 197,00 à vista</span>
+      </div>
+      <a class="btn" id="btnComprar" href="https://pay.hotmart.com/Q108676122V" data-origem="obrigado_guia">Quero o Kit do Proprietário</a>
+      <div class="seguro">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        Pagamento seguro pela Hotmart
+      </div>
+      <div class="garantia">
+        <div class="dias">7<small>dias</small></div>
+        <p><strong>Garantia incondicional de 7 dias.</strong> Se o Kit não for o que você esperava, é só pedir o reembolso dentro do prazo.</p>
+      </div>
+    </section>
+
+    <p class="rodape">Dúvidas? <a href="https://wa.me/5585921700545?text=Ol%C3%A1!%20Acabei%20de%20comprar%20o%20Guia%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Chame no WhatsApp</a></p>
+  </main>
+
+<script>
+(function(){
+  var v = document.getElementById('video');
+  var btn = document.getElementById('btnPlay');
+  var rotulo = document.getElementById('rotulo');
+  var barra = document.getElementById('progresso');
+  var aviso = document.getElementById('aviso');
+  var oferta = document.getElementById('oferta');
+  var maxT = 0, terminou = false, iniciou = false;
+
+  function liberar(motivo){
+    if (terminou) return;
+    terminou = true;
+    btn.hidden = true;
+    barra.style.width = '100%';
+    aviso.textContent = 'Obrigado por assistir!';
+    aviso.className = 'aviso ok';
+    oferta.classList.add('aberta');
+    gtag('event', 'kit_video_concluido', { motivo: motivo || 'ok' });
+    setTimeout(function(){
+      oferta.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 350);
+  }
+
+  btn.addEventListener('click', function(){
+    if (!iniciou){ iniciou = true; gtag('event', 'kit_video_inicio'); }
+    v.muted = false;
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){
+      rotulo.textContent = 'Toque de novo para assistir';
+    });
+  });
+
+  v.addEventListener('play', function(){ btn.hidden = true; });
+
+  // Se o vídeo pausar por conta própria (troca de aba, ligação), pede para continuar.
+  v.addEventListener('pause', function(){
+    if (terminou || v.ended) return;
+    rotulo.textContent = 'Toque para continuar';
+    btn.hidden = false;
+  });
+
+  v.addEventListener('timeupdate', function(){
+    if (!v.seeking && v.currentTime > maxT) maxT = v.currentTime;
+    if (v.duration) barra.style.width = Math.min(100, (v.currentTime / v.duration) * 100) + '%';
+  });
+
+  // Não deixa pular nem adiantar: qualquer salto volta ao ponto já assistido.
+  v.addEventListener('seeking', function(){
+    if (terminou) return;
+    if (Math.abs(v.currentTime - maxT) > 0.4) v.currentTime = maxT;
+  });
+  v.addEventListener('ratechange', function(){ if (v.playbackRate !== 1) v.playbackRate = 1; });
+
+  v.addEventListener('ended', function(){ liberar('ok'); });
+
+  // Se o vídeo não carregar, não perde a venda: libera o botão.
+  v.addEventListener('error', function(){ liberar('erro_video'); });
+  var src = v.querySelector('source');
+  if (src) src.addEventListener('error', function(){ liberar('erro_video'); });
+
+  document.getElementById('btnComprar').addEventListener('click', function(){
+    gtag('event', 'click_checkout', { origem: this.getAttribute('data-origem') });
+  });
+})();
+</script>
+</body>
+</html>
